@@ -9,11 +9,10 @@
 \usepackage{units}
 % Po potrebi se lahk dodajo drugi standardni paketi, ki ne spreminjajo izgleda dokumenta
 
-
 \begin{document}
 
 \MAT{1}{11}{2024}
-\naslov{Black–Scholes–Merton model}
+\naslov{Black–Scholesov model}
 
 \avtor{Anej Rozman}
 
@@ -21,7 +20,7 @@
 
 \klasifikacija{~} 
 \izvlecek{V članku so predstavljene evropske opcije, }
-\title{Black–Scholes–Merton model}
+\title{Black–Scholes model}
 \abstract{}
 
 \glava\baselineskip=14.5pt
@@ -29,15 +28,46 @@
 \smallskip
 
 \section{Uvod}
-    V članku bomo matematično izpeljali Black-Scholes-Mertonov model, ki je osnova za določanje cene opcij. Najprej bomo predstavili osnovne pojme, ki jih potrebujemo za razumevanje modela. Nato bomo izpeljali model in ga na koncu še numerično rešili.
+    
+    V svetu finančnih trgov, kjer so odločitve o vrednotenju ključnega pomena, je temeljen rezultat Black-Scholesov model. Razvit leta 1973 s strani Fischerja Blacka in Myrona Scholesa, ta matematični model predstavlja temeljno orodje pri ocenjevanju pravične vrednosti evropskih opcij. V tem članku predstavimo osnovne finančne koncepte, kot so osnovno premoženje, čas do zapadlosti, netvegana obrestna mera, volatilnost trga, itd. in motiviramo ter izpeljemo model kot limitni proces Cox-Ross-Rubinsteinovega (Binomskega) modela. Skozi to pokažemo, kako Black-Scholesova formula izhaja iz bolj preprostih finančnih modelov, hkrati pa ponuja naprednejši pristop k vrednotenju opcij, saj vse do danes ostaja najbolj poznan in pomemben zvezni model za vrednoenje. 
 
-\section{Poglavje}
+\section{Osnovni pojmi}
+    V tem poglavju predstavimo finančne trge s ključnimi predpostvakami pod katerimi izvajamo vrednotenja ter evropske opcije kot izvedene finančne instrumente.
+
+    ... predstavitev trgov, predpostavk, \dots
+
+    \begin{definicija}
+        \textit{Finančni instrument (ang. financial instrument)} je pogodba, ki vključuje kakršno koli finančno vrednost.
+    \end{definicija}
+
+    Najbolj poznani Finančni instrumenti so lastniški kot npr. delnica, nekateri pa imajo lastnost, da je njihova vrednost odvisna od vrednosti drugega finančnega instrumenta. Tem pravimo \textit{izvedeni finančni instrumenti (ang. derivative)}, instrumentom na katere so vezani pa pravimo \textit{osnovno premoženje (ang. underlying security/asset)}. Najbolj poznani primeri izvedenih finančnih instrumentov so opcije, vezane na delnice. 
+
+    \begin{definicija}
+        \textit{Evropska opcija (ang. European option)} je pogodba, ki daje imetniku pravico, ne pa tudi obveznosti, da kupi ali proda osnovno premoženje po dogovorjeni ceni na določen datum v prihodnosti, ki mu pravimo \textit{Čas zapadlosti (ang. expiration date)}.
+    \end{definicija}
+
+    \begin{zgled}
+        Naj bo $S_0$ vrednost delnice ob času $t=0$. 
+
+
+    \end{zgled}
+
+        
+
+
+
+
+
+
+
+
+
 
 
 
 \begin{thebibliography}{99}
 
-\bibitem{1} E.A. Cornell, C.E. Wieman, M.R. Matthews, J.R. Ensher in M.H. Anderson, \emph{Observation of Bose-Einstein Condensation in a Dilute Atomic Vapor}, Science \textbf{269} (1995), 198--201. 
+\bibitem{1} S. Roman, \emph{Introduction to mathematics of finance : from risk management to options pricing}, Science \textbf{269} (2004), 238--275. 
 \bibitem{2} W. Ketterle, D.M. Kurn, D.S. Durfee, N.J. van Druten, M.R. Andrews, M.-O. Mewes in K.B. Davis, \emph{Bose-Einstein Condensation in a Gas of Sodium Atoms}, Physics Review Letters \textbf{75} (1995), 3969--3973. 
 
 
