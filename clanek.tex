@@ -278,21 +278,21 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje.
         \pgfmathsetseed{10}
         \draw[->] (-1,0) -- (6,0) node[right] {$t$};
         \draw[->] (0,-1) -- (0,4) node[above] {$B_t$};
-        \draw[->, green] (2.3, 1.5) -- (6, 0);
-        \draw[->, green] (2.3, 1.5) -- (2.3, 4);
-        \draw[red, dashed] (3.485,0) -- (3.485,2.5);
-        \draw[black] (3.485, 0) node[below] {$T$};
+        \draw[->, green] (2.3, 1.75) -- (6, 1.75);
+        \draw[->, green] (2.3, 1.75) -- (2.3, 4);
+        \draw[dashed] (2.3,0) -- (2.3,1.75);
+        \draw[black] (2.3, 0) node[below] {$T$};
   
         \draw[blue] (0,0)
         \foreach \x in {1,...,230}
         { -- ++(0.01,rand*-0.2)
-        }
+        };
 
-        \draw[red] (2.3, 1.5)
+        \draw[red] (2.3, 1.75)
         \foreach \x in {1,...,270}
         { -- ++(0.01,rand*-0.2)
-        }
-        node[right, black] {$(t,B_t)$};
+        };
+
     \end{tikzpicture}
     \caption{Krepka lastnost Markova.}
     \label{fig:slika4}
