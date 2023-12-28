@@ -29,9 +29,10 @@
 
 \klasifikacija{~} 
 \izvlecek{V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. 
-    Predstavimo nekaj osnovnih lastnosti in rezultatov, kot simetričnost Brownovega gibanja,  }
+    Predstavimo nekaj osnovnih lastnosti in rezultatov, kot simetričnost Brownovega gibanja, "cas ustavljanja, krepka lastnost Markova, princip zracljenja  }
 \title{Brownian motion}
-\abstract{}
+\abstract{In this paper we motivate the idea of Brownian motion and give its mathematical definition. 
+    We present some basic properties and results, such as symmetry of Brownian motion, stopping time, strong Markov property, reflection principle.}
 
 \glava\baselineskip=14.5pt
 
@@ -48,27 +49,46 @@ Einsteina leta 1905. Od takrat je področje doseglo znaten napredek. Fizikalno t
 so nadalje izpopolnili Fokker, Planck, Ornstein in drugi. Matematična 
 teorija je počasneje napredovala, ker je natančen matematični opis modela postavljal 
 težave, medtem ko so bila nekatera vprašanja, na katera so fiziki iskali odgovore na
-podlagi tega modela, precej preprosta in intuitivna. Veliko odgovorov je bilo
-pridobljenih heuristično s strani Bachelierja v njegovi disertaciji leta 1900.
+podlagi tega modela, precej preprosta in intuitivna. Na veliko vpra"sanj je odgovoril Bachelier
+v njegovi disertaciji leta 1900.
 Prvo jasno matematično formulacijo teorije pa je Wiener podal v svoji
-disertaciji leta 1918 in kasnejših člankih, zato je alternativno ime za 
-Brownovo gibanje Wienerjev proces. Brownovo gibanje je primer kontinuiranega 
-časa, kontinuiranega prostora stanj Markovskega procesa, ki se danes skupaj z 
-njegovimi posplošitvami pojavlja na številnih področjih kot so biologija, finance in kot
-že omenjena, fizika. V članku se bomo
-osredotočili na matematično izpeljavo osnovnega Brownovega gibanja na $\mathbb{R}$ 
-ter njegove lastnosti in ne na uporabo v zgoraj omenjenih področjih.
+disertaciji leta 1918 in kasnejših člankih, zato je alternativno poimenovnanje 
+Brownovega gibanja Wienerjev proces. Je primer slučajnega procesa, ki se danes skupaj z 
+njegovimi posplošitvami pojavlja na številnih področjih kot so biologija, finance, fizika,
+itd. V članku se bomo osredotočili na matematično izpeljavo osnovnega Brownovega gibanja 
+na $\mathbb{R}$ ter nekaj lastnosti in ne na uporabo v že prej omenjenih področjih.
+Prvo pa si poglejmo nekaj osnovnih defnicij, ki jih bomo potrebovali v nadaljevanju.
 
+\begin{definicija}
+    Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$ neprazna
+    indeksna množica ter $(S, \Sigma)$ merljiv prostor. \textit{Slučajni proces}, parametriziran
+    s $T$, je družina slučajnih spremenljivk $X_t : \Omega \to S$, ki so $(\mathcal{F}, \Sigma)$-merljive
+    za vsak $t \in T$.
+\end{definicija}
 
+\begin{opomba}
+    Za naše namene bomo privzeli, da je $T = [0, \infty), \ (\mathcal{F}, \Sigma) = (\mathbb{R}, \mathcal{B}_{\mathbb{R}})$,
+    kjer $\mathcal{B}_{\mathbb{R}}$ predstavlja Borelovo $\sigma$-algebro na $\mathbb{R}$. 
+\end{opomba}
+    
+\begin{definicija}
+    Za fiksen $\omega \in \Omega$ je preslikava 
+    $[0, \infty) \rightarrow \mathbb{R}; \ t \mapsto X_t(\omega)$ 
+    \textit{realizacija} slučajnega procesa $(X_t)_{t\geq0}$.
+\end{definicija}
 
+%\begin{opomba}
+%    Na slu"cajni proces lahko gledamo tudi kot na predpis, ki nam iz vor"cnega prostora 
+%    $\Omega$ priredi slu"cajno funkcijo $(X_t(\omega))_{t\geq0}: [0, \infty) \rightarrow \mathbb{R}$.
+%\end{opomba}
 
 \pagebreak
+
 \section{Motivacija in definicija Brownovega gibanja}
 
 Kot Robert Brown si za motivacijo oglejmo naključno gibanje delca v $\mathbb{R}^2$.
-Smiselno bi bilo, da zahtevamo, da se gibanje začne v koordinatnem izhodišču. Želeli bi tudi, da so 
-poti oziroma trajektorije delca zvezne, saj nam nenadni skoki nebi pomagali pri opisovanju 
-pojava.  
+Zaradi preprostosti bomo zahtevali, da se gibanje začne v koordinatnem izhodišču. Želeli bi tudi, da so 
+poti delca zvezne, saj nam nenadni skoki nebi pomagali pri opisovanju pojava.  
 
 \begin{figure}[h]
     \centering
@@ -83,26 +103,48 @@ pojava.
       \node[above ,black] at (6,3.2) {$\left(B^x_{t}, B^y_{t}\right)$};
     \end{tikzpicture}
 
-    \caption{Primer trajektorije Brownovega gibanja v xy-ravnini.}
+    \caption{Gibanje delca v xy-ravnini.}
     \label{fig:slika1}
 \end{figure}
 
 \noindent
 Označimo z $\left(B^x_{t}, B^y_{t}\right)$ položaj delca v času $t \geq 0$. Ker se delec v vse 
 smeri giblje z enako verjetnostjo, bo pričakovana vrednost pozicije enaka $\mathbb{E}\left[(B_t^x, B_t^y)\right] = (0, 0).$
-Smiselno bi bilo privzeti, da so premiki delca med časi $0 < t_1 < t_2 < \dots < t_n < \infty$ med seboj neodvisni, torej, 
+Smiselno bi bilo privzeti, da so premiki delca med seboj neodvisni, torej, 
 da gibanje med časom $0$ in $t_1$ (razen tega kje gibanje začnemo) ne vpliva na gibanje med časom $t_1$ in $t_2$ in tako naprej.
-Matematično to zapišemo, da so vektorji $(B^x_{t_2}, B^y_{t_2}) - (B^x_{t_1}, B^y_{t_1}), \ \dots, (B^x_{t_n}, B^y_{t_n}) - (B^x_{t_{n-1}}, B^y_{t_{n-1}})$
-med seboj neodvisni. Če to velja vidimo, da je $\left(B^x_{t}, B^y_{t}\right)$ vsota neodvisnih prirastkov. Po centralnem 
+
+\begin{definicija}
+    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ $X_t - X_s$ definiramo \textit{prirastek procesa} na 
+    intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima \textit{neodvisne prirastke}, če so za vsak nabor 
+    $0 \leq t_1 < t_2 < \dots < t_n < \infty$ prirastki 
+    $$
+        X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \dots, \ X_{t_n} - X_{t_{n-1}}
+    $$
+    med seboj neodvisni.
+\end{definicija}
+
+\noindent
+V na"sem primeru to zapišemo, da so vektorji $(B^x_{t_2}, B^y_{t_2}) - (B^x_{t_1}, B^y_{t_1}), \ \dots, (B^x_{t_n}, B^y_{t_n}) - (B^x_{t_{n-1}}, B^y_{t_{n-1}})$
+med seboj neodvisni. Prav tako bi bilo smiselno privzeti, da "ce si izberemo nek "casovni interval $[s, t]$,
+ je porazdelitev prirastka $X_t - X_s$ odvisna le od dol"zine intervala in ne od tega, kje ga za"cnemo. 
+
+\begin{definicija}
+    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem pravimo, da ima proces \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, da ima $X_{t+h} - X_{s+h}$ enako porazdelitev kot $X_t - X_s$.
+\end{definicija}
+
+\noindent
+V na"sem primeru to zapi"semo, da imata vektorja $(B^x_{t_2}, B^y_{t_2}) - (B^x_{t_1}, B^y_{t_1})$ in $(B^x_{t_2-t_1}, B^y_{t_2-t_1})$ enako porazdelitev.
+Če to velja vidimo, da je $\left(B^x_{t}, B^y_{t}\right)$ vsota neodvisnih prirastkov. Po centralnem 
 limitnem izreku bi torej pričakovali, da je vektor $\left(B^x_{t}, B^y_{t}\right)$ normalno porazdeljen.
 Spomnimo se, da je slučajna spremenljivka $X$ normalno porazdeljena s pričakovano vrednostjo $\mu$ in varianco $\sigma^2$, če
 je njena gostota porazdelitve enaka
 $$
     f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
 $$
-Zaradi neodvisnosti prirastkov bo tudi $\text{Var}(B_t^x) = \text{Var}(B_t^y) = t$, torej odvisna le od tega koliko 
-časa opazujemo delec.
-Te opazke nas privedejo do definicije Brownovega gibanja na $\mathbb{R}$, kjer bi jih radi matematično karakterizirali.
+Zaradi neodvisnosti prirastkov bo tudi $\text{Var}(B_t^x) = \text{Var}(B_t^y) = t$, torej odvisna le od tega koliko časa opazujemo delec.
+Ta razmislek nas privede do definicije Brownovega gibanja na $\mathbb{R}$, kjer bi ga radi matematično karakterizirali.
+
+\pagebreak
 
 \begin{definicija}
     Slučajnemu procesu $(B_t)_{t\geq 0}$ definiranem na verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$
@@ -128,14 +170,14 @@ podamo v obliki izreka.
 \end{izrek}
 
 \begin{dokaz}
-    Dokaz izreka je precej tehničen in nezanimiv za namen članka, zato ga bomo izpustili.
-     Lahko ga najdemo v \cite{1}. $\hfill \square$
+    Dokaz izreka je precej tehničen in nezanimiv za namen članka, zato ga bomo izpustili. Najte"zji del je 
+    pokazati, da so realizacije zvezne. Lahko ga najdemo v \cite{1}. $\hfill \square$
 \end{dokaz}
 
 
-Od sedaj naprej bomo privzeli, da je $(B_t)_{t\geq 0}$ Brownovo gibanje vedno definirano na 
+Od sedaj naprej bomo vedno z $(B_t)_{t\geq 0}$ ozna"cili Brownovo gibanje, ki bo vedno definirano na 
 verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ in se nanj (razen po potrebi) ne 
-bomo sklicevali. Priročno bo v mislih držati sliko \ref{fig:slika2}.
+bomo sklicevali. Priročno bo v mislih držati sliko realizacije  \ref{fig:slika2}.
 
 \begin{figure}[h]
     \centering
@@ -151,7 +193,7 @@ bomo sklicevali. Priročno bo v mislih držati sliko \ref{fig:slika2}.
       node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer trajektorije eno-dimenzionalnega Brownovega gibanja.}
+    \caption{Primer realizacije eno-dimenzionalnega Brownovega gibanja do "casa $t$.}
     \label{fig:slika2}
 \end{figure}
 
@@ -163,24 +205,29 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 članka.
 
 \begin{trditev}
-    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $0 \leq s < t < \infty$. Potem velja
-    $$
-        Cov(B_t, B_s) = s
-    $$
+    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $0 \leq s < t < \infty$. Potem velja:
+    \begin{enumerate}
+        \item $ Cov(B_t, B_s) = s$.
+        \item Brownovo gibanje je simetrično, torej $(-B_{t})_{t\geq0}$ je tudi Brownovo gibanje.	
+    \end{enumerate}
 \end{trditev}
 
 \begin{dokaz}
-    Ker je $B_t - B_s \sim N(0, t-s)$, sledi
-    $$
-        Cov(B_t, B_s) = Cov(B_s + B_t - B_s, B_s) = Cov(B_s, B_s) + Cov(B_t - B_s, B_s) = s + 0 = s.
-    $$
+    \begin{enumerate}
+        \item Ker je $B_t - B_s \sim N(0, t-s)$, sledi
+        $$
+            Cov(B_t, B_s) = Cov(B_s + B_t - B_s, B_s) = Cov(B_s, B_s) + Cov(B_t - B_s, B_s) = s + 0 = s.
+        $$
+        \item nic se
+    \end{enumerate}
     $\hfill \square$
 \end{dokaz}
 
-Za nadaljevanje bomo potrebovali naslednjo trditev iz teorije mere.
+Za nadaljevanje bomo potrebovali naslednjo trditev, katere dokaz za na"se namene ni relevanten, ampak ga lahko najdemo v \cite{1}.
 
 \begin{trditev}
-     Če velja $\mathbb{E}\left[f(X)g(X)\right] = \mathbb{E}\left[f(X)\right]\mathbb{E}\left[g(X)\right]$. za vsak par 
+    Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
+    Če velja $\mathbb{E}\left[f(X)g(X)\right] = \mathbb{E}\left[f(X)\right]\mathbb{E}\left[g(X)\right]$ za vsak par 
      omejenih zveznih funkcij $f, g$, potem sta $X$ in $Y$ neodvisni.
 \end{trditev}
 
@@ -218,6 +265,10 @@ Za nadaljevanje bomo potrebovali naslednjo trditev iz teorije mere.
     je \textit{čas ustavljanja} glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$, če je za vsak $t \in \mathbb{R}$ dogodek $\{T \leq t\} \in \mathcal{F}_t$.
 \end{definicija}
 
+Torej če je $T$ čas ustavljanja in poznamo pot Brownovega gibanja do $t$, potem vemo, 
+ali je $T\leq t$ ali ne. Poglejmo si primer časa ustavljanja in primer slučajne spremenljivke, 
+ki ni čas ustavljanja.
+
 \begin{primer}
     Naj bo $(B_t)_{t\geq0}$ Brownovo gibanje in $a \in \mathbb{R}$. Potem je
     $$
@@ -248,12 +299,34 @@ Za nadaljevanje bomo potrebovali naslednjo trditev iz teorije mere.
     \label{fig:slika3}
 \end{figure}
 
+\begin{primer}
+    Naj bo $(B_t)_{t\geq0}$ Brownovo gibanje in $a < b \in \mathbb{R}$. Potem je
+    $$
+        T_{\max} = \sup\{t \in [a, b] \mid B_t \geq B_s, s\in[a, b] \}
+    $$
+    primer slučajne spremenljivke, ki ni čas ustavljanja glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$.
+\end{primer}
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \pgfmathsetseed{12}
+        \draw[->] (-1,0) -- (6,0) node[right] {$t$};
+        \draw[->] (0,-1) -- (0,4) node[above] {$B_t$};
 
-\begin{trditev}
-    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje. Potem velja, da je simetrično,
-    torej $-(B_{t})_{t\geq0}$ je tudi Brownovo gibanje.
-\end{trditev}
+        \draw[red, dashed] (3.485,0) -- (3.485,2.5);
+        \draw[black] (3.485, 0) node[below] {$T_{\max}$};
+  
+        \draw[blue] (0,0)
+        \foreach \x in {1,...,500}
+        { -- ++(0.01,rand*-0.2)
+        }
+        node[right, black] {$(t,B_t)$};
+
+    \end{tikzpicture}
+    \caption{Primer realizacije $T_{\max}$.}
+    \label{fig:slika4}
+\end{figure}
 
 \subsection{Krepka lastnost Markova}
 Pokažimo, da je za Brownovo gibanje velja krepka lastnost Markova. Torej, če 
@@ -261,16 +334,18 @@ v nekem trenutku ustavimo proces in ga gledamo od te točke dalje, bo neodvisen 
 dotedanjega gibanja ter bo ponovno Brownovo gibanje.
 
 \begin{izrek}
-    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $T$ čas ustavljanja, da velja $\mathbb{P}(T<\infty )=1$.
+    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $T$ čas ustavljanja, za katerega velja velja $\mathbb{P}(T<\infty )=1$.
     Definiramo proces $B^*_s = B_{T + s} - B_T$ za $s\geq0$. Potem je $(B^*_s)_{s\geq0}$ Brownovo
     gibanje, neodvisno od $\mathcal{F}_T$.
 \end{izrek}
 
 \begin{dokaz}
-    trivial duh $\hfill \square$
+    Predpostavino, da $T$ zavzema vrednosti v $\{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\}$ za nek $n\in\mathbb{N}$. 
+    
+     $\hfill \square$
 \end{dokaz}
 
-Če izrek ponazorimo s sliko.
+Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavimo in ga "'zlepimo"' z dugim Brownovim gibanjem, bo to "se vedno standardno Brownovo gibanje. 
 
 \begin{figure}[h]
     \centering
@@ -278,8 +353,8 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje.
         \pgfmathsetseed{10}
         \draw[->] (-1,0) -- (6,0) node[right] {$t$};
         \draw[->] (0,-1) -- (0,4) node[above] {$B_t$};
-        \draw[->, green] (2.3, 1.75) -- (6, 1.75);
-        \draw[->, green] (2.3, 1.75) -- (2.3, 4);
+        \draw[->, green] (2.3, 1.75) -- (6, 1.75) node[right, black] {$t$};
+        \draw[->, green] (2.3, 1.75) -- (2.3, 4) node[above, black] {$B^*_t$};
         \draw[dashed] (2.3,0) -- (2.3,1.75);
         \draw[black] (2.3, 0) node[below] {$T$};
   
@@ -295,13 +370,15 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje.
 
     \end{tikzpicture}
     \caption{Krepka lastnost Markova.}
-    \label{fig:slika4}
+    \label{fig:slika5}
 \end{figure}
 
-
+To je ravno ideja za naslednjo lastnostjo.
 
 \subsection{Princip zrcaljenja}
 
+Tokrat definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja) in v tej vrednosti glede na premico $y = a$ zrcalimo Brownovo gibanje. 
+Dobimo nov slu"cajni proces $(B_t^*)_{t\geq0}$, za katerega trdimo, da je Brownovo gibanje.
 
 \begin{figure}[h]
     \centering
@@ -329,7 +406,7 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje.
 
     \end{tikzpicture}
     \caption{Primer zrcaljenja Brownovega gibanja.}
-    \label{fig:slika5}
+    \label{fig:slika6}
 \end{figure}
 
 
