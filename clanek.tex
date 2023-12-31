@@ -9,7 +9,7 @@
 \usepackage{units}
 % Po potrebi se lahk dodajo drugi standardni paketi, ki ne spreminjajo izgleda dokumenta
 
-
+\usepackage{bbm}
 \usepackage{tikz}
 \usetikzlibrary{positioning, 
                 arrows.meta,                % arrow tips
@@ -28,11 +28,17 @@
 \institucija{Fakulteta za matematiko in fiziko \\ Univerza v Ljubljani}
 
 \klasifikacija{~} 
-\izvlecek{V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. 
-    Predstavimo nekaj osnovnih lastnosti in rezultatov, kot simetričnost Brownovega gibanja, "cas ustavljanja, krepka lastnost Markova, princip zracljenja  }
+\izvlecek{
+    V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. 
+    Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, "cas ustavljanja, krepka lastnost Markova,
+     princip zracljenja in presenetljiv rezultat, da je realizacija Brownovega gibanja nedovedljiva funkcija.
+     }  
 \title{Brownian motion}
-\abstract{In this paper we motivate the idea of Brownian motion and give its mathematical definition. 
-    We present some basic properties and results, such as symmetry of Brownian motion, stopping time, strong Markov property, reflection principle.}
+\abstract{
+    In this paper we motivate the idea of Brownian motion and give its mathematical definition. 
+    We present and prove some basic properties and results, such as the symmetry of Brownian motion, stopping time, strong Markov property,
+    reflection principle and the surprising result that the sample path of Brownian motion is an undifferentiable function.
+    }
 
 \glava\baselineskip=14.5pt
 
@@ -114,11 +120,11 @@ Smiselno bi bilo privzeti, da so premiki delca med seboj neodvisni, torej,
 da gibanje med časom $0$ in $t_1$ (razen tega kje gibanje začnemo) ne vpliva na gibanje med časom $t_1$ in $t_2$ in tako naprej.
 
 \begin{definicija}
-    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ $X_t - X_s$ definiramo \textit{prirastek procesa} na 
+    Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem za $s < t$ definiramo \textit{prirastek procesa} $X_t - X_s$ na 
     intervalu $[s, t]$. Proces $(X_t)_{t\geq0}$ ima \textit{neodvisne prirastke}, če so za vsak nabor 
-    $0 \leq t_1 < t_2 < \dots < t_n < \infty$ prirastki 
+    $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ prirastki (slučajne spremenljivke)
     $$
-        X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \dots, \ X_{t_n} - X_{t_{n-1}}
+        X_{t_2} - X_{t_1}, \ X_{t_3} - X_{t_2}, \ \ldots, \ X_{t_n} - X_{t_{n-1}}
     $$
     med seboj neodvisni.
 \end{definicija}
@@ -126,20 +132,19 @@ da gibanje med časom $0$ in $t_1$ (razen tega kje gibanje začnemo) ne vpliva n
 \noindent
 V na"sem primeru to zapišemo, da so vektorji $(B^x_{t_2}, B^y_{t_2}) - (B^x_{t_1}, B^y_{t_1}), \ \dots, (B^x_{t_n}, B^y_{t_n}) - (B^x_{t_{n-1}}, B^y_{t_{n-1}})$
 med seboj neodvisni. Prav tako bi bilo smiselno privzeti, da "ce si izberemo nek "casovni interval $[s, t]$,
- je porazdelitev prirastka $X_t - X_s$ odvisna le od dol"zine intervala in ne od tega, kje ga za"cnemo. 
+ je porazdelitev prirastka odvisna le od dol"zine tega "casovnega intervala in ne od tega, kje gibanje gledamo. 
 
 \begin{definicija}
     Naj bo $(X_t)_{t\geq0}$ slu"cajni proces. Potem pravimo, da ima proces \textit{stacionarne prirastke}, "ce za vsak $s < t$ in vsak $h > 0$ velja, da ima $X_{t+h} - X_{s+h}$ enako porazdelitev kot $X_t - X_s$.
 \end{definicija}
 
 \noindent
-V na"sem primeru to zapi"semo, da imata vektorja $(B^x_{t_2}, B^y_{t_2}) - (B^x_{t_1}, B^y_{t_1})$ in $(B^x_{t_2-t_1}, B^y_{t_2-t_1})$ enako porazdelitev.
 Če to velja vidimo, da je $\left(B^x_{t}, B^y_{t}\right)$ vsota neodvisnih prirastkov. Po centralnem 
 limitnem izreku bi torej pričakovali, da je vektor $\left(B^x_{t}, B^y_{t}\right)$ normalno porazdeljen.
 Spomnimo se, da je slučajna spremenljivka $X$ normalno porazdeljena s pričakovano vrednostjo $\mu$ in varianco $\sigma^2$, če
 je njena gostota porazdelitve enaka
 $$
-    f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+    f_X(x) = \tfrac{1}{\sqrt{2\pi\sigma^2}}\exp\left[-\tfrac{(x-\mu)^2}{2\sigma^2}\right].
 $$
 Zaradi neodvisnosti prirastkov bo tudi $\text{Var}(B_t^x) = \text{Var}(B_t^y) = t$, torej odvisna le od tega koliko časa opazujemo delec.
 Ta razmislek nas privede do definicije Brownovega gibanja na $\mathbb{R}$, kjer bi ga radi matematično karakterizirali.
@@ -152,14 +157,14 @@ Ta razmislek nas privede do definicije Brownovega gibanja na $\mathbb{R}$, kjer 
     zadošča naslednjim pogojem:
     \begin{enumerate}
         \item $\mathbb{P}(B_0 = 0) = 1$,
-        \item trajektorije $(B_t)_{t\geq0}$ so $\mathbb{P}$-skoraj gotovo zvezne,
-        \item proces $\left(B_t\right)_{t \geq 0}$ ima neodvisne prirastke t.j. za $0 \leq t_1 < t_2 < \dots < t_n < \infty$ so slučajne spremenljivke
-            $B_{t_2} - B_{t_1}, \ B_{t_3} - B_{t_2}, \ \dots, \ B_{t_n} - B_{t_{n-1}}$ med seboj neodvisne. 
+        \item realizacije $(B_t)_{t\geq0}$ $(t \mapsto B_t)$ so $\mathbb{P}$-skoraj gotovo zvezne,
+        \item proces $\left(B_t\right)_{t \geq 0}$ ima neodvisne prirastke t.j. za $0 \leq t_1 < t_2 < \ldots < t_n < \infty$ so slučajne spremenljivke
+            $B_{t_2} - B_{t_1}, \ B_{t_3} - B_{t_2}, \ \ldots, \ B_{t_n} - B_{t_{n-1}}$ med seboj neodvisne. 
         \item Za $ 0 \leq s < t < \infty$ je $B_t - B_s \sim N(0, t-s)$.
     \end{enumerate}
 \end{definicija}
         
-Prvo vprašanje, ki se nam porodi, je, ali sploj obstajta verjetnostni prostor 
+Vprašanje, ki se nam porodi je, ali sploj obstajta verjetnostni prostor 
 in slučajni proces, ki zadoščata zgornjim zahtevam. Odgovor je pritrdilen in ga 
 podamo v obliki izreka.
 
@@ -199,7 +204,7 @@ bomo sklicevali. Priročno bo v mislih držati sliko realizacije  \ref{fig:slika
 
 \section{Lastnosti}
 
-\subsection{Osnovne lastnosti}
+\subsection{Osnovne lastnosti in "casi ustavljanja}
 
 Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle prav v nadaljevanju 
 članka.
@@ -214,51 +219,63 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 
 \begin{dokaz}
     \begin{enumerate}
-        \item Ker je $B_t - B_s \sim N(0, t-s)$, sledi
-        $$
-            Cov(B_t, B_s) = Cov(B_s + B_t - B_s, B_s) = Cov(B_s, B_s) + Cov(B_t - B_s, B_s) = s + 0 = s.
-        $$
-        \item nic se
+        \item Ker velja $B_t - B_s \sim N(0, t-s)$, sledi
+        \begin{align*}
+            Cov(B_t, B_s) &= Cov(B_s + B_t - B_s, B_s) \\
+                        &= Cov(B_s, B_s) + Cov(\underbrace{B_t - B_s, B_s}_{neodivsni}) \\
+                        &= s + 0 = s.
+        \end{align*}
+        \item Zveznost realizacij, neodivsnost in stacionarnost prirastkov so lastnosti, ki se ohranjajo pri linearnih transformacijah. "Ce pogledamo razliko $(-B_t) - (-B_s)$ 
+        za $0 \leq s < t$, dobimo 
+        \begin{align*}
+        (-B_t) - (-B_s) &= -(B_t - B_s)\\
+                        &\sim -N(0, t - s)\\
+                        &\sim N(0, t-s).
+        \end{align*}
     \end{enumerate}
     $\hfill \square$
 \end{dokaz}
 
-Za nadaljevanje bomo potrebovali naslednjo trditev, katere dokaz za na"se namene ni relevanten, ampak ga lahko najdemo v \cite{1}.
+%Za nadaljevanje bomo potrebovali naslednjo trditev, katere dokaz za na"se namene ni relevanten, ampak ga lahko najdemo v \cite{1}.
+%
+%\begin{trditev}
+%    Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
+%    Če velja $\mathbb{E}\left[f(X)g(X)\right] = \mathbb{E}\left[f(X)\right]\mathbb{E}\left[g(X)\right]$ za vsak par 
+%     omejenih zveznih funkcij $f, g$, potem sta $X$ in $Y$ neodvisni.
+%\end{trditev}
 
-\begin{trditev}
-    Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
-    Če velja $\mathbb{E}\left[f(X)g(X)\right] = \mathbb{E}\left[f(X)\right]\mathbb{E}\left[g(X)\right]$ za vsak par 
-     omejenih zveznih funkcij $f, g$, potem sta $X$ in $Y$ neodvisni.
-\end{trditev}
-
-\begin{definicija}
-    Naj bo $X$ slučajna spremenljivka na verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$
-    in $\mathcal{G} \subseteq \mathcal{F}$ pod-$\sigma$-algebra. $X$ je \textit{neodvisna}
-    od $\mathcal{G}$, če za vsako omejeno zvezno funkcijo $f$ velja
-    $$
-        \mathbb{E}\left[f(X)1_G\right] = \mathbb{E}\left[f(X)\right]\mathbb{P}(G)
-    $$
-    za vsak $G \in \mathcal{G}$.
-\end{definicija}
+%\begin{definicija}
+%    Naj bo $X$ slučajna spremenljivka defnirana na verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$
+%    in $\mathcal{G} \subseteq \mathcal{F}$ pod-$\sigma$-algebra. $X$ je \textit{neodvisna}
+%    od $\mathcal{G}$, če za vsako omejeno zvezno funkcijo $f$ velja
+%    $$
+%        \mathbb{E}\left[f(X)\mathbbm{1}_G\right] = \mathbb{E}\left[f(X)\right]\mathbb{P}(G)
+%    $$
+%    za vsak $G \in \mathcal{G}$.
+%\end{definicija}
 
 \begin{definicija}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje. S $\mathcal{F}_t$ 
-    označimo $\sigma$-algebro generirano z$ \sigma(B_s \mid 0\leq s \leq t)$. 
+    označimo $\sigma$-algebro generirano s $\sigma(B_s \mid 0\leq s \leq t)$. 
     Družini $(\mathcal{F}_t)_{t\geq 0}$ pravimo \textit{Brownova filtracija}.
 \end{definicija}
 
-\begin{izrek}
-    Za vsak fiksen $t \geq 0$ je proces $\{B_{t+s}-B_t\mid s\geq 0\}$ Brownovo gibanje neodvisno 
-    od $\mathcal{F}_t$.
-\end{izrek}
+\begin{opomba}
+    V splo"snem je filtracija dru"zina nara"s"cajo"cih $\sigma$-algeber, torej $\mathcal{F}_s \subseteq \mathcal{F}_t$ za $s \leq t$, ki je lahko kon"cna ali neskon"cna.
+\end{opomba}
 
-\begin{dokaz}
-    Naj bo $0 \leq t < \infty$ in $0 \leq s_1 < s_2 < \dots < s_n < \infty$. 
-    Potem je $B_{t+s_1} - B_t, \ B_{t+s_2} - B_{t+s_1}, \ \dots, \ B_{t+s_n} - B_{t+s_{n-1}}$ 
-    neodvisen od $\mathcal{F}_t$, saj je neodvisen od $B_t$ in je $\mathcal{F}_t$ generiran z 
-    $B_t$. Torej je $\{B_{t+s}-B_t\mid s\geq 0\}$ neodvisen od $\mathcal{F}_t$.
-    $\hfill \square$
-\end{dokaz}
+%\begin{izrek}
+%    Za vsak fiksen $t \geq 0$ je proces $\{B_{t+s}-B_t\mid s\geq 0\}$ Brownovo gibanje neodvisno 
+%    od $\mathcal{F}_t$.
+%\end{izrek}
+%
+%\begin{dokaz}
+%    Naj bo $0 \leq t < \infty$ in $0 \leq s_1 < s_2 < \ldots < s_n < \infty$. 
+%    Potem je $B_{t+s_1} - B_t, \ B_{t+s_2} - B_{t+s_1}, \ \ldots, \ B_{t+s_n} - B_{t+s_{n-1}}$ 
+%    neodvisen od $\mathcal{F}_t$, saj je neodvisen od $B_t$ in je $\mathcal{F}_t$ generiran z 
+%    $B_t$. Torej je $\{B_{t+s}-B_t\mid s\geq 0\}$ neodvisen od $\mathcal{F}_t$.
+%    $\hfill \square$
+%\end{dokaz}
 
 \begin{definicija}
     Naj bo $(\mathcal{F}_t)_{t\geq0}$ filtracija. Slučajna spremenljivka $T: \Omega \rightarrow [0, \infty)\cup \{\infty\}$ 
@@ -274,7 +291,7 @@ ki ni čas ustavljanja.
     $$
         T_a = \inf\{t \geq 0 \mid B_t = a\}
     $$
-    čas ustavljanja glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$.
+    čas ustavljanja glede na Brownovo filtracijo $(\mathcal{F}_t)_{t\geq0}$. "Se ve"c, velja $\mathbb{P}(T_a < \infty) = 1$.
 \end{primer}
 
 \begin{figure}[h]
@@ -286,6 +303,7 @@ ki ni čas ustavljanja.
         \draw[red, dashed] (0,2.5) -- (6,2.5);
         \draw[black] (0, 2.5) node[left] {$a$};
         \draw[red, dashed] (3.485,0) -- (3.485,2.5);
+        \filldraw[red] (3.485,2.5) circle (1pt);
         \draw[black] (3.485, 0) node[below] {$T_a$};
   
         \draw[blue] (0,0)
@@ -299,24 +317,35 @@ ki ni čas ustavljanja.
     \label{fig:slika3}
 \end{figure}
 
+\pagebreak
+
 \begin{primer}
     Naj bo $(B_t)_{t\geq0}$ Brownovo gibanje in $a < b \in \mathbb{R}$. Potem je
     $$
-        T_{\max} = \sup\{t \in [a, b] \mid B_t \geq B_s, s\in[a, b] \}
+        T^{a, b}_{\max} = \{t \in [a, b] \mid \max\{B_t\} \}
     $$
-    primer slučajne spremenljivke, ki ni čas ustavljanja glede na filtracijo $(\mathcal{F}_t)_{t\geq0}$.
+    primer slučajne spremenljivke, ki ni čas ustavljanja glede na Brownovo filtracijo $(\mathcal{F}_t)_{t\geq0}$, saj velja npr. $\{T^{a, b}_{\max} \leq \tfrac{a+b}{2}\} \not\in \mathcal{F}_{\tfrac{a+b}{2}}$.
 \end{primer}
+
+
 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-        \pgfmathsetseed{12}
+        \pgfmathsetseed{13}
         \draw[->] (-1,0) -- (6,0) node[right] {$t$};
         \draw[->] (0,-1) -- (0,4) node[above] {$B_t$};
 
-        \draw[red, dashed] (3.485,0) -- (3.485,2.5);
-        \draw[black] (3.485, 0) node[below] {$T_{\max}$};
-  
+        \draw[red, dashed] (2.34,0) -- (2.34,3.2);
+        \draw[black] (2.345, 0) node[below] {$T^{a,b}_{\max}$};
+        \filldraw[red] (2.34,3.2) circle (1pt);
+
+        \draw[dashed] (1, 0) -- (1, 4);
+        \draw[black] (1, 0) node[below] {$a$};
+
+        \draw[dashed] (4, 0) -- (4, 4);
+        \draw[black] (4, 0) node[below] {$b$};
+
         \draw[blue] (0,0)
         \foreach \x in {1,...,500}
         { -- ++(0.01,rand*-0.2)
@@ -324,14 +353,50 @@ ki ni čas ustavljanja.
         node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer realizacije $T_{\max}$.}
+    \caption{Primer realizacije $T^{a,b}_{\max}$.}
     \label{fig:slika4}
 \end{figure}
 
+Intuitivna razlaga "casa ustavljanja je naslednja. "Ce proces opazujemo do "casa $t$, potem bi radi v tem "casu imeli vse informacije, da lahko povemo
+ali se je $T$ zgodil ali ne. V primeru [2] to ne velja, saj moramo vedeti vse kar se je zgodilo do "casa $b$, da lahko povemo kje je maksimum. 
+
 \subsection{Krepka lastnost Markova}
-Pokažimo, da je za Brownovo gibanje velja krepka lastnost Markova. Torej, če 
+Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Torej, če 
 v nekem trenutku ustavimo proces in ga gledamo od te točke dalje, bo neodvisen od
-dotedanjega gibanja ter bo ponovno Brownovo gibanje.
+dotedanjega gibanja ter bo ponovno Brownovo gibanje. Prvo potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali (dokaz lahko najdemo v \cite{1}).
+
+%\begin{lema}
+%        Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
+%    Če velja $\mathbb{E}\left[f(X)g(X)\right] = \mathbb{E}\left[f(X)\right]\mathbb{E}\left[g(X)\right]$ za vsak par 
+%     omejenih zveznih funkcij $f, g$, potem sta $X$ in $Y$ neodvisni.
+%\end{lema}
+%
+
+\begin{definicija}
+    Naj bo $X$ slučajna spremenljivka defnirana na verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$
+    in $\mathcal{G} \subseteq \mathcal{F}$ pod-$\sigma$-algebra. $X$ je \textit{neodvisna}
+    od $\mathcal{G}$, če za vsako omejeno zvezno funkcijo $f$ velja
+    $$
+        \mathbb{E}\left[f(X)\mathbbm{1}_G\right] = \mathbb{E}\left[f(X)\right]\mathbb{P}(G)
+    $$
+    za vsak $G \in \mathcal{G}$.
+\end{definicija}
+
+\begin{lema}
+    Naj bosta $\overline{X}, \overline{Y} $ slu"cajna vektorja. "Ce velja 
+    $$
+        \mathbb{E}\left[\prod_{i=1}^n f_i(X_i)\right] = \mathbb{E}\left[\prod_{i=1}^n f_i(Y_i)\right]
+    $$
+    za vse omejene zvezne funkcije $f_1, \ldots, f_n$ potem sta $\overline{X}$ in $\overline{Y}$ enako porazdeljena.
+\end{lema}
+
+\begin{definicija}
+    Naj bo $T$ "cas ustavljanja. Potem $\sigma$-algebri
+    $$
+        \mathcal{F}_T = \{A \in \mathcal{F} \mid A \cap \{T \leq t\} \in \mathcal{F}_t \ za \ \forall t\}
+    $$
+    pravimo \textit{dogodki to "casa $T$}.
+\end{definicija}
 
 \begin{izrek}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $T$ čas ustavljanja, za katerega velja velja $\mathbb{P}(T<\infty )=1$.
@@ -340,12 +405,69 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje.
 \end{izrek}
 
 \begin{dokaz}
-    Predpostavino, da $T$ zavzema vrednosti v $\{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\}$ za nek $n\in\mathbb{N}$. 
+    Predpostavino, da $T$ zavzema vrednosti v $\{0, \tfrac{1}{n}, \tfrac{2}{n}, \ \ldots, \}$ za nek $n\in\mathbb{N}$. 
+    Potem za $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in $G \in \mathcal{F}_T$ ter $f_1, \ldots, f_n$ (omejene zvezne funkcije) ra"cunamo
+
+    \begin{align*}
+        \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\right] &= \\
+        &=\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right] \\
+        &= (\text{izrek o dominirani konvergenci}) = \\
+        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right] = \\
+        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\underbrace{\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})}_{\in \mathcal{F}_{\tfrac{m}{n}}}\right] = \\
+        &= \sum_{m=0}^\infty\left[\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right] = \\
+        %&= ((B_{\tfrac{m}{n}+s_k}-B_{\tfrac{m}{n} + s_{k-1}})\sim (B_{s_k}-B_{s_{k-1}})) = \\
+        &= \sum_{m=0}^\infty\left[\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right] = \\
+        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\sum_{m=0}^\infty\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T=\tfrac{m}{n})\right] = \\
+        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right] = \\
+        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbbm{P}\left(G\right) \\
+    \end{align*} 
+    Pokazali smo, da ima $(B^*_s)_{s\geq0}$ naselednje lastnosti:
+    \begin{enumerate}
+        \item zveznost realizacij,
+        \item Po lemi 3 velja, da so vektorji $(B^*_{s_2} - B^*_{s_1}, \ldots, B^*_{s_n} - B^*_{s_{n-1}})$ in $(B_{s_2} - B_{s_1}, \ldots, B_{s_n} - B_{s_{n-1}})$ enako porazdeljeni za poljuben nabor $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in prvi vektor je neodvisen od $\mathcal{F}_T$.
+
+    \end{enumerate}
+    S tem smo pokazali, da je $(B^*_s)_{s\geq0}$ Brownovo gibanje neodvisno od $\mathcal{F}_T$.
+    \noindent
+    Kaj pa, "ce $T$ zavzema vrednosti v $\mathbb{R}$? V tem primeru za $T$ z vrednostmi v $\{0, \tfrac{1}{n}, \tfrac{2}{n}, \ \ldots, \}$
+    definiramo $T_r = \tfrac{1}{r}\lceil rT\rceil$ za $r\in\mathbb{N}$. Torej najve"cji ve"ckratnik $\tfrac{1}{r}$, ki je$ \geq T$.
+
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}
+                \draw (-1,0) -- (5,0);
+
+                \draw (1,0) node[below] {$\frac{n-1}{r}$};
+                \draw (3,0.1) -- (3,-0.1);
+                \draw (3, 0) node[below] {$\frac{n}{r}$};
+
+                \draw[->] (2.3, 0.55)--(3, 0.55);
+                \draw[<-] (1,0) -- (3,0);
+
+                \filldraw (2.3,0) circle (1pt) node[above] {$T$};
+
+        \end{tikzpicture}
+    \end{figure}
     
+    \pagebreak
+    \noindent
+     Preverili bi lahko, da je $T_r$ res "cas ustavljanja. Ker je $T_r \geq T$ velja $\mathcal{F}_{T} \subseteq \mathcal{F}_{T_r}$. Velja $T_r \downarrow T$ ko $r \rightarrow \infty$. Torej za $G \in \mathcal{F}_T$ velja
+
+     \begin{align*}
+        &\mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G) \\
+        &\mathrel{\rotatebox[origin=c]{90}{$=$}} \\
+        &\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T_r +s_k} - B_{T_r + s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T_r + s_k} - B_{T_r + s_{k-1}}\right)\right]\mathbb{P}(G)
+    \end{align*}
+
+    \noindent
+    Ko gre $r \rightarrow \infty$ . Po zveznosti realizacij sledi $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-skoraj gotovo. Zaradi dominirane konvergence lahko nesemo limito pod $\mathbb{E}$ in dobimo
+    $$
+        \mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G)
+    $$
      $\hfill \square$
 \end{dokaz}
 
-Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavimo in ga "'zlepimo"' z dugim Brownovim gibanjem, bo to "se vedno standardno Brownovo gibanje. 
+Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavimo in gledamo na proces od tega trenutka dalje, bo to "se vedno Brownovo gibanje. 
 
 \begin{figure}[h]
     \centering
@@ -373,19 +495,21 @@ Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavi
     \label{fig:slika5}
 \end{figure}
 
-To je ravno ideja za naslednjo lastnostjo.
 
 \subsection{Princip zrcaljenja}
 
-Tokrat definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja) in v tej vrednosti glede na premico $y = a$ zrcalimo Brownovo gibanje. 
-Dobimo nov slu"cajni proces $(B_t^*)_{t\geq0}$, za katerega trdimo, da je Brownovo gibanje.
+Tokrat definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja za katerega velj a $\mathbb{P}(T < \infty) = 1$) in v tej vrednosti glede na premico $y = a$ zrcalimo realizacijo Brownovega gibanja (glej sliko \ref{fig:slika6}). 
+Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje "'podalj"samo"' s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). Ozna"cimo to tretje Brownovo gibanje z $B'_t$. Naj bo $x<a$ realno "stevilo. Izra"cunati "zelimo 
+$$
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_t\}\geq a, \ B_t \leq x\right).
+$$
 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
     \pgfmathsetseed{952}
     \draw[->] (-1,0) -- (6,0) node[right] {$t$};
-    \draw[->] (0,-1) -- (0,4) node[above] {$B_t$};
+    \draw[->] (0,-1) -- (0,4) node[above] {$B_t, B^*_t, B'_t$};
     \draw[black] (0, 0.75) node[left] {$a$};
 
     \draw[spath/save=horiz, red, dashed] (0,0.75) -- (6,0.75);
@@ -394,7 +518,7 @@ Dobimo nov slu"cajni proces $(B_t^*)_{t\geq0}$, za katerega trdimo, da je Browno
       foreach \x in {1,...,500}{
          -- ++(0.01,rand*-0.2) 
          }
-      node[right, black] {$(t,B_t)$};
+      node[right, black] {$B^*_t$};
 
         \draw[
             draw=orange,
@@ -402,14 +526,97 @@ Dobimo nov slu"cajni proces $(B_t^*)_{t\geq0}$, za katerega trdimo, da je Browno
             split at intersections with={squiggly}{horiz},
             remove components={squiggly}{1},
             use={squiggly, transform={yshift=1.5cm,yscale=-1}},
-            ] node[anchor=base west] {$(t,B'_t)$};
+            ] node[anchor=base west] {$B'_t$};
 
+    \draw[black, dashed] (1.76, 0) -- (1.76,0.7);
+    \draw[black] (1.8, 0) node[below] {$T_a$};
+    \draw[black] (1, -1.1) node[below] {$B_t$};
     \end{tikzpicture}
     \caption{Primer zrcaljenja Brownovega gibanja.}
     \label{fig:slika6}
 \end{figure}
 
+\pagebreak
+\noindent
+Ta verjetnost je enaka
+$$
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B'_t\}\geq a, \ B'_t \leq x\right),
+$$
+ampak ta verjetnost pa je enaka (glej sliko \ref{fig:slika6})
+$$
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_t\}\geq a, \ B_t \geq 2a -x\right).
+$$
+"Ce velja $B_t \geq 2a - x$, velja tudi $\max_{0\leq s\leq t}\{B_t\}\geq a$. Torej je 
+$$
+    \mathbb{P}\left(\max_{0\leq s \leq t}\{B_t\} \geq a, \ B_t \leq x\right) = 
+$$
+$$
+    \mathbb{P}\left(B_t \geq 2a - x\right) =
+$$
+$$
+    1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right),
+$$
+kjer je $\varPhi$ porazdelitvena funkcija normalne porazdelitve. "Ce ozna"cimo $Y_t = \max_{0\leq s\leq t}\{B_t\}$, potem je 
+$$
+    \mathbb{P}\left(Y_t \geq a, \ B_t \leq x\right) = 1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right).
+$$
+Na"sli smo porazdelitev vektorja $(Y_t, B_t)$. Upo"stevamo, da je 
+$$
+    \mathbb{P}\left(Y_t \geq a, \ B_t \leq x\right) = \mathbb{P}\left(Y_t \geq a\right) - \mathbb{P}\left(Y_t \geq a, \ B_t > x\right)
+$$
+in ra"cunamo
+\begin{align*}
+    \frac{\partial^2}{\partial a \partial x}\left(1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right)\right) &= -\frac{\partial}{\partial a}\varPhi'\left(\frac{2a - x}{\sqrt{t}}\right)\frac{1}{\sqrt{t}} =\\
+    &= -\frac{\partial}{\partial a}\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{(2a - x)^2}{2t}\right]\frac{1}{\sqrt{t}} =\\
+    &= \frac{2(2a - x)}{\sqrt{2\pi t^3}}\exp\left[-\frac{(2a - x)^2}{2t}\right]
+\end{align*}
 
+"Ce integriramo  po $x$ do na $(-\infty, a]$ dobimo gostoto $Y_t$ 
+$$
+    \int_{-\infty}^a f_{Y_t, B_t}(a, x)\text{dx} = \frac{2}{\sqrt{2\pi t}}\exp\left[-\frac{a^2}{2t}\right],
+$$
+kar pa pomeni, da ima $Y_t$ enako porazdelitev kot $|B_t|$.
+
+Ker za dogodek  $\{T_a \leq t\}$ velja $\{T_a \leq t\} = \{Y_t \geq a\}$ sledi 
+$$
+    \mathbb{P}(T_a \leq t) = \mathbb{P}(|B_t| \geq a) = 2\left(1 - \varPhi\left(\frac{a}{\sqrt{t}}\right)\right).
+$$
+
+Po odvajanju po $t$ dobimo
+$$
+    f_{T_a}(t) = \frac{1}{\sqrt{2\pi t^3}}\exp\left[-\frac{a^2}{2t}\right]
+$$
+
+\subsection{Neodvedljivost}
+Za zaklju"cek poka"zimo "se idejo dokaza, da je realizacija Brownovega gibanja nedovedjiva povsod $\mathbb{P}$-skoraj gotovo. Potrebovali bomo naslednjo lemo.
+
+\begin{lema}
+    Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in naj bo $a>0$ realno "stevilo. Potem je slu"cajni proces $(X_t)_{t\geq0}$ definiran s predpisom $X_t = \tfrac{1}{a}B_{a^2t}$ tudi Brownovo gibanje.
+\end{lema}
+
+\begin{dokaz}
+    Zveznost realizacij, neodivsnost in stacionarnost prirastkov so lastnosti, ki se ohranjajo pri tovrstni transformaciji. "Ce pogledamo razliko $X_t - X_s$ 
+    za $0 < s < t$, dobimo
+    \begin{align*}
+        X_t - X_s &= \tfrac{1}{a}B_{a^2t} - \tfrac{1}{a}B_{a^2s} \\
+        &= \tfrac{1}{a}\left(B_{a^2t} - B_{a^2s}\right) \\
+       &\sim N\left(0, \tfrac{1}{a^2}(a^2t - a^2s)\right) \\
+       &\sim N(0, t-s).
+    \end{align*}
+    $\hfill \square$
+\end{dokaz}
+
+\begin{izrek}
+    Realizacija Brownovega gibanja je nedovedljiva funkcija $\mathbb{P}$-skoraj gotovo, "se ve"c, za vsak $t > 0$ velja ali 
+    $$
+        \limsup_{h\to0}\tfrac{B_{t+h} - B_t}{h} = \infty \quad \text{ali} \quad \liminf_{h\to0}\tfrac{B_{t+h} - B_t}{h} = -\infty.
+    $$
+    ali oboje $\mathbb{P}$-skoraj gotovo.
+\end{izrek}
+
+\begin{dokaz}
+    
+\end{dokaz}
 
 \begin{thebibliography}{99}
 
