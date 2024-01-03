@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+
+\begin{document}
+
+
+I would appreciate if anyone could help me with this proof of the strong markov property for Brownian motion I'm trying to write. I have the following definitions and lemmas to help me with the proof.
+
+Definiton 1 
+Let $X$ be a random variable defined on the probability space $(\Omega, \mathcal{F}, \mathbb{P})$, and let $\mathcal{G} \subseteq \mathcal{F}$ be a sub-$\sigma$-algebra. $X$ is independent of $\mathcal{G}$ if, for every bounded continuous function $f$, the following holds:
+    $$
+        \mathbb{E}\left[f(X)1_G\right] = \mathbb{E}\left[f(X)\right]\mathbb{P}(G)
+    $$
+    for every $G \in \mathcal{G}$.
+
+Lemma 1  
+    Let $\overline{X}, \overline{Y}$ be random vectors. If
+    $$
+        \mathbb{E}\left[\prod_{i=1}^n f_i(X_i)\right] = \mathbb{E}\left[\prod_{i=1}^n f_i(Y_i)\right]
+    $$
+    for all bounded continuous functions $f_1, \ldots, f_n$, then $\overline{X}$ and $\overline{Y}$ are identically distributed.
+
+
+Definition 2  
+    Let $T$ be a stopping time. Then, the $\sigma$-algebra $\mathcal{F}_T$ is defined as
+    $$
+    \mathcal{F}_T = \left(A \in \mathcal{F} \mid A \cap \{T \leq t\} \in \mathcal{F}_t \ \text{for all} \ t\right).
+    $$
+    $\mathcal{F}_T$ is a summary of the events up to time $T$.
+
+
+Theorem 1  
+Let $(B_t)_{t \geq 0}$ be a Brownian motion, and let $T$ be a stopping time such that $\mathbb{P} (T < \infty ) = 1$. Define the process $B'_s = B_{T + s} - B_T.$
+Then, (B'_s)_{s \geq 0} is a Brownian motion, independent of $\mathcal{F}_T$.
+
+Here's my proof, if there is a step which isn't clear,please point it out in the comments so I can edit it.
+
+Proof   
+Assume that $T$ takes values in $ \{ 0, \tfrac{1}{n}, \tfrac{2}{n}, \ldots, \} $ for some $n\in\mathbb{N}$. For $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ and $G \in \mathcal{F}_T$, and for bounded continuous functions $f_1, \ldots, f_n$, we calculate
+
+
+$$ E\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)1_G\right] = $$
+ $$ = E\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)1_G\sum_{m=0}^\infty1(T=\tfrac{m}{n})\right] $$
+  $$= \ (\text{Dominated Convergence Theorem}) = $$
+  $$=\sum_{m=0}^\infty E\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)1_G1(T = \tfrac{m}{n})\right] $$
+ $$ =\sum_{m=0}^\infty E\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)1_G1(T = \tfrac{m}{n})\right] $$
+  $$= \sum_{m=0}^\infty\left(E\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\right]E\left[1_G1(T = \tfrac{m}{n})\right]\right) $$
+ $$ = \sum_{m=0}^\infty\left(E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]E\left[1_G1(T = \tfrac{m}{n})\right]\right) $$
+ $$ = E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\sum_{m=0}^\infty E\left[1_G1(T=\tfrac{m}{n})\right] $$
+ $$ = E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]E\left[1_G\sum_{m=0}^\infty1(T=\tfrac{m}{n})\right] $$
+ $$ = E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]P\left[G\right] $$
+
+
+
+We have shown that $ B'_s = B - B_T $ . The process $ (B'_s)_{s \geq 0} $ inherits the following properties:
+Continuity of sample paths. By Lemma 3, the vectors $(B'_{s_2} - B'_{s_1}, \ldots, B'_{s_n} - B'_{s_{n-1}})$ and $(B_{s_2} - B_{s_1}, \ldots, B_{s_n} - B_{s_{n-1}})$ are identically distributed for any set $0 \leq s_1 < s_2 < \ldots < s_n < \infty$, and the first vector is independent of $\mathcal{F}_T$.
+Thus, we have shown that $(B'_s)_{s \geq 0}$ is a Brownian motion independent of $\mathcal{F}_T$.
+
+What if $T$ takes values in $[0, \infty)$? In this case, for $T$ taking values in $\{0, \tfrac{1}{n}, \tfrac{2}{n}, \ldots \}$, we define $T_r = \tfrac{1}{r}\lceil rT\rceil$ for $r\in\mathbb{N}$. This is the largest multiple of $\tfrac{1}{r}$ that is $\geq T$.
+
+It could be verified that $T_r$ is indeed a stopping time. Since $T_r \geq T$, we have $\mathcal{F}_{T} \subseteq \mathcal{F}_{T_r}$. As $T_r \downarrow T$ as $r \rightarrow \infty$, for $G \in \mathcal{F}_T$, we have
+
+$$
+E\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)1_G\right] = E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]P(G)
+$$
+
+$$
+E\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)1_G\right] = E\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]P(G)
+$$
+
+
+As $r \rightarrow \infty$, by the continuity of realizations, we have $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-almost surely. By the Lebesgue Dominated Convergence Theorem, we can interchange the limit and the expectation, resulting in
+
+$$
+        \mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G)
+$$
+
+
+\end{document}

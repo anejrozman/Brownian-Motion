@@ -29,15 +29,15 @@
 
 \klasifikacija{~} 
 \izvlecek{
-    V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. 
-    Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, "cas ustavljanja, krepka lastnost Markova,
+    V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. Definiramo osnovne pojme kot so slu"cajni proces, trajektorija, prirastek, filtracija in "cas ustavljanja.
+    Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, krepka lastnost Markova,
      princip zracljenja in presenetljiv rezultat, da je trajektorija Brownovega gibanja neodvedljiva funkcija.
      }  
 \title{Brownian motion}
 \abstract{
-    In this paper we motivate the idea of Brownian motion and give its mathematical definition. 
-    We present and prove some basic properties and results, such as the symmetry of Brownian motion, stopping time, strong Markov property,
-    reflection principle and the surprising result that the sample path of Brownian motion is an undifferentiable function.
+    In this paper we motivate the idea of Brownian motion and give its mathematical definition. We define basic concepts such as a stochastic process, sample path, increment, filtration and stopping time.
+    We present and prove some basic properties and results, such as the symmetry of Brownian motion, strong Markov property,
+    reflection principle and the surprising result that the sample path of Brownian motion is nowhere differentiable.
     }
 
 \glava\baselineskip=14.5pt
@@ -62,7 +62,7 @@ Brownovega gibanja Wienerjev proces. Je primer slučajnega procesa, ki se danes 
 njegovimi posplošitvami pojavlja na številnih področjih kot so biologija, finance, fizika,
 itd. V članku se bomo osredotočili na matematično izpeljavo osnovnega Brownovega gibanja 
 na $\mathbb{R}$ ter nekaj lastnosti in ne na uporabo v že prej omenjenih področjih.
-Prvo pa si poglejmo nekaj osnovnih defnicij, ki jih bomo potrebovali v nadaljevanju.
+Prvo pa si poglejmo nekaj osnovnih definicij, ki jih bomo potrebovali v nadaljevanju.
 
 \begin{definicija}
     Naj bo $(\Omega, \mathcal{F}, \mathbb{P})$ verjetnostni prostor in naj bo $T\neq\emptyset$ neprazna
@@ -205,8 +205,7 @@ bomo sklicevali. Priročno bo v mislih držati sliko primera trajektorije  \ref{
 
 \subsection{Osnovne lastnosti in "casi ustavljanja}
 
-Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle prav v nadaljevanju 
-članka.
+Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle prav pri dokazovanju pomembnejših rezultatov v nadaljevanju.
 
 \begin{trditev}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $0 \leq s < t < \infty$. Potem velja:
@@ -312,7 +311,7 @@ ki ni čas ustavljanja.
         node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer realizacije $T_a$.}
+    \caption{Primer trajektorije $T_a$.}
     \label{fig:slika3}
 \end{figure}
 
@@ -354,7 +353,7 @@ ki ni čas ustavljanja.
         node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer realizacije $T^{a,b}_{\max}$.}
+    \caption{Primer trajektorije $T^{a,b}_{\max}$.}
     \label{fig:slika4}
 \end{figure}
 
@@ -362,9 +361,7 @@ Intuitivna razlaga "casa ustavljanja je naslednja. "Ce proces opazujemo do "casa
 ali se je $T$ zgodil ali ne (kak"sno vrednost je zavzel $T$). V primeru [2] to ne velja, saj moramo vedeti vse kar se je zgodilo do "casa $b$, da lahko povemo kje je maksimum. 
 
 \subsection{Krepka lastnost Markova}
-Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Torej, če 
-v nekem trenutku slu"cajno ustavimo proces in ga gledamo od te točke dalje, bo neodvisen od
-dotedanjega gibanja ter bo ponovno Brownovo gibanje. Da to poka"zemo potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali (dokaz v \cite{3}).
+Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Da to poka"zemo potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali (dokaz v \cite{3}).
 
 %\begin{lema}
 %        Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
@@ -394,10 +391,13 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje. Da to poka"zemo potrebujemo
 \begin{definicija}
     Naj bo $T$ "cas ustavljanja. Potem  je $\sigma$-algebra $\mathcal{F}_T$ definirana kot
     $$
-        \mathcal{F}_T = \{A \in \mathcal{F} \mid A \cap \{T \leq t\} \in \mathcal{F}_t \ \text{za} \ \forall t\}.
+        \mathcal{F}_T = \{A \in \mathcal{F} \mid A \cap \{T \leq t\} \in \mathcal{F}_t \ \text{za vsak} \ t\geq 0\}.
     $$
     $\mathcal{F}_T$ je \textit{povzetek} dogajanja do "casa $T$.
 \end{definicija}
+
+Formalno za slu"cajni proces $(X_t)_{t\geq0}$ definiran na verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$ s filtracijo $(\mathcal{F}_t)_{t\geq0}$, velja
+krepka lastnost Markova, "ce za vsak "cas ustavljanja $T$, pogojno na dogodek $\{T < \infty\}$, velja, da je za vsak $t \geq 0$,  $X_{T + t}$ neodvisen od $\mathcal{F}_T$.
 
 \begin{izrek}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in $T$ čas ustavljanja, za katerega velja velja $\mathbb{P}(T<\infty )=1$.
@@ -407,7 +407,7 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje. Da to poka"zemo potrebujemo
 
 \begin{dokaz}
     Predpostavino, da $T$ zavzema vrednosti v $\{0, \tfrac{1}{n}, \tfrac{2}{n}, \ \ldots, \}$ za nek $n\in\mathbb{N}$. 
-    Potem za $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in $G \in \mathcal{F}_T$ ter $f_1, \ldots, f_n$ (omejene zvezne funkcije) ra"cunamo
+    Potem za $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in $G \in \mathcal{F}_T$ ter $f_1, \ \ldots, f_n$ (omejene zvezne funkcije) ra"cunamo
 
     \begin{align*}
         \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\right] &= \\
@@ -422,13 +422,13 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje. Da to poka"zemo potrebujemo
         &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right] = \\
         &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbbm{P}\left(G\right) \\
     \end{align*} 
-    Pokazali smo, da velja $B^*_s = B_{T+s} - B_T$. $(B^*_s)_{s\geq0}$ naselednje lastnosti:
+    S tem smo pokazali, da velja $B^*_s = B_{T+s} - B_T$. Proces $(B^*_s)_{s\geq0}$ ima naselednje lastnosti:
     \begin{enumerate}
-        \item zveznost realizacij,
-        \item Po lemi 3 velja, da so vektorji $(B^*_{s_2} - B^*_{s_1}, \ldots, B^*_{s_n} - B^*_{s_{n-1}})$ in $(B_{s_2} - B_{s_1}, \ldots, B_{s_n} - B_{s_{n-1}})$ enako porazdeljeni za poljuben nabor $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in prvi vektor je neodvisen od $\mathcal{F}_T$.
+        \item zveznost trajektorij,
+        \item Po lemi 3 velja, da so vektorji $(B^*_{s_2} - B^*_{s_1}, \ \ldots, B^*_{s_n} - B^*_{s_{n-1}})$ in $(B_{s_2} - B_{s_1}, \ \ldots, B_{s_n} - B_{s_{n-1}})$ enako porazdeljeni za poljuben nabor $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in prvi vektor je neodvisen od $\mathcal{F}_T$.
 
     \end{enumerate}
-    S tem smo pokazali, da je $(B^*_s)_{s\geq0}$ Brownovo gibanje neodvisno od $\mathcal{F}_T$.
+    Torej $(B^*_s)_{s\geq0}$ je Brownovo gibanje neodvisno od $\mathcal{F}_T$.
     \noindent
     Kaj pa, "ce $T$ zavzema vrednosti v $[0, \infty)$? V tem primeru za $T$ z vrednostmi v $\{0, \tfrac{1}{n}, \tfrac{2}{n}, \ \ldots \}$
     definiramo $T_r = \tfrac{1}{r}\lceil rT\rceil$ za $r\in\mathbb{N}$. Torej najve"cji ve"ckratnik $\tfrac{1}{r}$, ki je $ \geq T$.
@@ -461,7 +461,7 @@ dotedanjega gibanja ter bo ponovno Brownovo gibanje. Da to poka"zemo potrebujemo
     \end{align*}
 
     \noindent
-    Ko gre $r \rightarrow \infty$ . Po zveznosti realizacij sledi $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-skoraj gotovo. Po Lebesgueovem izrelu o dominirani konvergenci lahko nesemo limito pod $\mathbb{E}$ in dobimo
+    Ko gre $r \rightarrow \infty$, po zveznosti trajektorij sledi $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-skoraj gotovo. Po Lebesgueovem izreku o dominirani konvergenci lahko v prej"snjih izra"cunih nesemo limito pod $\mathbb{E}$ in dobimo
     $$
         \mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G)
     $$
@@ -499,7 +499,7 @@ Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavi
 
 \subsection{Princip zrcaljenja}
 
-Tokrat definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja za katerega velja $\mathbb{P}(T < \infty) = 1$) in v tej vrednosti glede na premico $y = a$ zrcalimo realizacijo Brownovega gibanja (glej sliko \ref{fig:slika6}). 
+Definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja za katerega velja $\mathbb{P}(T < \infty) = 1$) in v tej vrednosti glede na premico $y = a$ zrcalimo trajektorijo Brownovega gibanja (glej sliko \ref{fig:slika6}). 
 Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje "'podalj"samo"' s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). Ozna"cimo to tretje Brownovo gibanje z $B'_t$. Naj bo $x<a$ realno "stevilo. Izra"cunati "zelimo 
 $$
     \mathbb{P}\left(\max_{0\leq s\leq t}\{B_t\}\geq a, \ B_t \leq x\right).
@@ -589,14 +589,14 @@ $$
 $$
 
 \subsection{Neodvedljivost}
-Za zaklju"cek poka"zimo "se idejo dokaza, da je trajektorija Brownovega gibanja nedovedjiva povsod. V celotnem dokazu (glej \cite{1}) uporabimo naslednji rezultat.
+Za zaklju"cek poka"zimo "se idejo dokaza, da je trajektorija Brownovega gibanja nedovedjiva funkcija $t \mapsto B_t$ za vsak $t \in [0, \infty)$. V celotnem dokazu (glej \cite{1}) uporabimo naslednji rezultat.
 
 \begin{lema}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje in naj bo $a>0$ realno "stevilo. Potem je slu"cajni proces $(X_t)_{t\geq0}$ definiran s predpisom $X_t = \tfrac{1}{a}B_{a^2t}$ tudi Brownovo gibanje.
 \end{lema}
 
 \begin{dokaz}
-    Zveznost realizacij, neodivsnost in stacionarnost prirastkov so lastnosti, ki se ohranjajo pri tovrstni transformaciji. "Ce pogledamo razliko $X_t - X_s$ 
+    Zveznost trajektorij, neodivsnost in stacionarnost prirastkov so lastnosti, ki se ohranjajo pri tovrstni transformaciji. "Ce pogledamo razliko $X_t - X_s$ 
     za $0 < s < t$, dobimo
     \begin{align*}
         X_t - X_s &= \tfrac{1}{a}B_{a^2t} - \tfrac{1}{a}B_{a^2s} \\
@@ -608,11 +608,7 @@ Za zaklju"cek poka"zimo "se idejo dokaza, da je trajektorija Brownovega gibanja 
 \end{dokaz}
 
 \begin{izrek}
-    trajektorija Brownovega gibanja je neodvedljiva funkcija $\mathbb{P}$-skoraj gotovo, "se ve"c, za vsak $t > 0$ velja ali 
-    $$
-        \limsup_{h\to0}\tfrac{B_{t+h} - B_t}{h} = \infty \quad \text{ali} \quad \liminf_{h\to0}\tfrac{B_{t+h} - B_t}{h} = -\infty.
-    $$
-    ali oboje $\mathbb{P}$-skoraj gotovo.
+    Trajektorija Brownovega gibanja je neodvedljiva funkcija $\mathbb{P}$-skoraj gotovo.
 \end{izrek}
 
 \begin{dokaz}
@@ -630,9 +626,10 @@ Za zaklju"cek poka"zimo "se idejo dokaza, da je trajektorija Brownovega gibanja 
 
 \begin{thebibliography}{99}
 
-\bibitem{1} R. Durrett, \emph{Probability: Theory and examples} (2019), 353--379. 
-\bibitem{2} Tukej bo vir do dokaza za dokaz pomoznih trditev za krepko lastnost markova \emph{Bose-Einstein Condensation in a Gas of Sodium Atoms}, Physics Review Letters \textbf{75} (1995), 3969--3973. 
-\bibitem{3} M. Perman \emph{Zapiski predavanj finan"ne matematike 2} (2023)
+\bibitem{1} R. Durrett, \emph{Probability: Theory and Examples, Fifth Edition}, eKnjiga, Cambridge University Press, 2019. 
+\bibitem{2} Tukej bo vir do dokaza za dokaz pomoznih trditev za krepko lastnost markova 
+\bibitem{3} M. Perman, \emph{Zapiski predavanj finan"cne matematike 2} 2021
+\bibitem{4} S. Karlin in H. M. Taylor, \emph{A First Course in Stochastic Processes}, Academic Press, 1975.
 
 
 \end{thebibliography}
