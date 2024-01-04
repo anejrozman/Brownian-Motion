@@ -9,6 +9,8 @@
 \usepackage{units}
 % Po potrebi se lahk dodajo drugi standardni paketi, ki ne spreminjajo izgleda dokumenta
 
+\usepackage{hyperref}
+\allowdisplaybreaks
 \usepackage{bbm}
 \usepackage{tikz}
 \usetikzlibrary{positioning, 
@@ -30,13 +32,13 @@
 \klasifikacija{~} 
 \izvlecek{
     V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. Definiramo osnovne pojme kot so slu"cajni proces, trajektorija, prirastek, filtracija in "cas ustavljanja.
-    Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, krepka lastnost Markova,
+    Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, "sibka lastnost Markova, krepka lastnost Markova,
      princip zracljenja in presenetljiv rezultat, da je trajektorija Brownovega gibanja neodvedljiva funkcija.
      }  
 \title{Brownian motion}
 \abstract{
     In this paper we motivate the idea of Brownian motion and give its mathematical definition. We define basic concepts such as a stochastic process, sample path, increment, filtration and stopping time.
-    We present and prove some basic properties and results, such as the symmetry of Brownian motion, strong Markov property,
+    We present and prove some basic properties and results, such as the symmetry of Brownian motion, weak Markov property, strong Markov property,
     reflection principle and the surprising result that the sample path of Brownian motion is nowhere differentiable.
     }
 
@@ -48,7 +50,7 @@
 
 Določeni posebni primeri slučajnih procesov so skozi zgodovino doživeli obsežen
 matematični razvoj. Brownovo gibanje je najbolj znano in zgodovinsko prvo, ki je bilo 
-temeljito raziskano. Kot fizičen pojav ga je prvi opisal angle"ski botanik Roberta Brown leta 1827.
+temeljito raziskano. Kot fizičen pojav ga je prvi opisal angle"ski botanik Robert Brown leta 1827.
 Matematični opis Brownovega gibanja je prvič izpeljal iz fizikalnih zakonov Albert
 Einstein leta 1905. Od takrat je celotna teorija slu"cajnih procesov do"zivela znaten napredek. Fizikalno teorijo Brownovega gibanja
 so nadalje izpopolnili Fokker, Planck, Ornstein in drugi. Matematična 
@@ -162,7 +164,11 @@ Ta razmislek nas privede do definicije Brownovega gibanja na $\mathbb{R}$, kjer 
         \item Za $ 0 \leq s < t < \infty$ je $B_t - B_s \sim N(0, t-s)$.
     \end{enumerate}
 \end{definicija}
-        
+
+\begin{opomba}
+    Hitro lahko vidimo, da po "cetrti lastnosti sledi, da so prirastki procesa stacionarni.
+\end{opomba}
+
 Vprašanje, ki se nam porodi je, ali sploj obstajta verjetnostni prostor 
 in slučajni proces, ki zadoščata zgornjim zahtevam. Odgovor je pritrdilen in ga 
 podamo v obliki izreka.
@@ -252,6 +258,7 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 %    za vsak $G \in \mathcal{G}$.
 %\end{definicija}
 
+
 \begin{definicija}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje. S $\mathcal{F}_t$ 
     označimo $\sigma$-algebro generirano s $\sigma(B_s \mid 0\leq s \leq t)$. 
@@ -261,6 +268,32 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 \begin{opomba}
     V splo"snem je filtracija $(\mathcal{F}_t)_{t\geq0}$ dru"zina nara"s"cajo"cih $\sigma$-algeber, torej $\mathcal{F}_s \subseteq \mathcal{F}_t$ za $s \leq t$, ki je lahko kon"cna ali neskon"cna.
 \end{opomba}
+ 
+
+\begin{izrek}
+    Naj bo $B_t$ Brownovo gibanje in $(\mathcal{F}_t)_{t\geq 0}$ Brownova filtracija. Za vsak fiksen $t \geq 0$  je proces $\{B_{t+s}-B_t\mid s\geq 0\}$ Brownovo gibanje neodvisno od $\mathcal{F}_t$.
+\end{izrek}
+
+\begin{dokaz}
+    Naj bo $t \geq 0$. Zaradi neodivsnoti prirastkov sta slu"cajni spremenljivki 
+    $$
+    B_{t+s}-B_t \ \text{in} \ B_t
+    $$
+    neodvisni. Proces o"citno "zado"s"ca pogojem 1, 2 in 3 iz definicije Brownovega gibanja. Naj bo $t \leq u < s < \infty$ in ozna"cimo z $X_s = B_{t+s}-B_t$. Velja
+    \begin{align*}
+        X_s - X_u &= (B_{t + s} - B_t) + (B_{t + u} - B_t) \\        
+                  &= B_{t + s} - B_{t + u} \\
+                  &\sim N(0, s-u), 
+    \end{align*}
+    zaradi stacionarnosti prirastkov.
+    $\hfill \square$
+\end{dokaz}
+
+\begin{opomba}
+    Zgornjemu izreku pravimo tudi "sibka lastnost Markova. Med drugim iz tega sledi, da je Brownovo giabnje Markovski proces.
+\end{opomba}
+
+Vpra"sanje ki se pojavi je, Kaj pa "ce naklju"cno ustavimo proces. A zgornja lastnost "se vedno velja?
 
 %\begin{izrek}
 %    Za vsak fiksen $t \geq 0$ je proces $\{B_{t+s}-B_t\mid s\geq 0\}$ Brownovo gibanje neodvisno 
@@ -281,9 +314,10 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 \end{definicija}
 
 Torej če je $T$ čas ustavljanja in poznamo pot Brownovega gibanja do $t$, potem vemo, 
-ali je $T\leq t$ ali ne. Poglejmo si primer časa ustavljanja in primer slučajne spremenljivke, 
+ali se je $T$  zgodil ali ne. Poglejmo si primer časa ustavljanja in primer slučajne spremenljivke, 
 ki ni čas ustavljanja.
 
+\pagebreak
 \begin{primer}
     Naj bo $(B_t)_{t\geq0}$ Brownovo gibanje in $a \in \mathbb{R}$. Potem je
     $$
@@ -311,12 +345,12 @@ ki ni čas ustavljanja.
         node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer trajektorije $T_a$.}
+    \caption{Primer realizacije $T_a$.}
     \label{fig:slika3}
 \end{figure}
 
 \begin{opomba}
-    Ker je $T_a$ definiran za poljuben $a \in \mathbb{R}$, vidimo, da bo bo Brownovo gibanje v nekem "casu  $t\geq 0$ "'obiskalo"' poljubno veliko realno "stevilo z verjetnostjo 1.
+    Ker je $T_a$ definiran za poljuben $a \in \mathbb{R}$, vidimo, da bo bo Brownovo gibanje v nekem "casu  $t\geq 0$ obiskalo poljubno veliko realno "stevilo z verjetnostjo 1.
 \end{opomba}
 
 \begin{primer}
@@ -353,7 +387,7 @@ ki ni čas ustavljanja.
         node[right, black] {$(t,B_t)$};
 
     \end{tikzpicture}
-    \caption{Primer trajektorije $T^{a,b}_{\max}$.}
+    \caption{Primer realizacije $T^{a,b}_{\max}$.}
     \label{fig:slika4}
 \end{figure}
 
@@ -361,7 +395,7 @@ Intuitivna razlaga "casa ustavljanja je naslednja. "Ce proces opazujemo do "casa
 ali se je $T$ zgodil ali ne (kak"sno vrednost je zavzel $T$). V primeru [2] to ne velja, saj moramo vedeti vse kar se je zgodilo do "casa $b$, da lahko povemo kje je maksimum. 
 
 \subsection{Krepka lastnost Markova}
-Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Da to poka"zemo potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali (dokaz v \cite{3}).
+Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Da to poka"zemo potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali, saj niso vsebinsko povezani s temo "clanka.
 
 %\begin{lema}
 %        Naj bosta $X, Y$ slu"cajni spremenljivki definirani na skupnem verjetnostnem prostoru $(\Omega, \mathcal{F}, \mathbb{P})$.
@@ -386,6 +420,7 @@ Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Da to poka"zemo
         \mathbb{E}\left[\prod_{i=1}^n f_i(X_i)\right] = \mathbb{E}\left[\prod_{i=1}^n f_i(Y_i)\right]
     $$
     za vse omejene zvezne funkcije $f_1, \ldots, f_n$ potem sta $\overline{X}$ in $\overline{Y}$ enako porazdeljena.
+    \label{lema:4}
 \end{lema}
 
 \begin{definicija}
@@ -425,7 +460,7 @@ krepka lastnost Markova, "ce za vsak "cas ustavljanja $T$, pogojno na dogodek $\
     S tem smo pokazali, da velja $B^*_s = B_{T+s} - B_T$. Proces $(B^*_s)_{s\geq0}$ ima naselednje lastnosti:
     \begin{enumerate}
         \item zveznost trajektorij,
-        \item Po lemi 3 velja, da so vektorji $(B^*_{s_2} - B^*_{s_1}, \ \ldots, B^*_{s_n} - B^*_{s_{n-1}})$ in $(B_{s_2} - B_{s_1}, \ \ldots, B_{s_n} - B_{s_{n-1}})$ enako porazdeljeni za poljuben nabor $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in prvi vektor je neodvisen od $\mathcal{F}_T$.
+        \item Po lemi \ref{lema:4} velja, da so vektorji $(B^*_{s_2} - B^*_{s_1}, \ \ldots, B^*_{s_n} - B^*_{s_{n-1}})$ in $(B_{s_2} - B_{s_1}, \ \ldots, B_{s_n} - B_{s_{n-1}})$ enako porazdeljeni za poljuben nabor $0 \leq s_1 < s_2 < \ldots < s_n < \infty$ in prvi vektor je neodvisen od $\mathcal{F}_T$.
 
     \end{enumerate}
     Torej $(B^*_s)_{s\geq0}$ je Brownovo gibanje neodvisno od $\mathcal{F}_T$.
@@ -450,9 +485,9 @@ krepka lastnost Markova, "ce za vsak "cas ustavljanja $T$, pogojno na dogodek $\
         \end{tikzpicture}
     \end{figure}
     
-    \pagebreak
+   
     \noindent
-     Preverili bi lahko, da je $T_r$ res "cas ustavljanja. Ker je $T_r \geq T$ velja $\mathcal{F}_{T} \subseteq \mathcal{F}_{T_r}$. Velja $T_r \downarrow T$ ko $r \rightarrow \infty$. Torej za $G \in \mathcal{F}_T$ velja
+     Preverili bi lahko, da je $T_r$ res "cas ustavljanja. Za $T_r$ tudi velja krepka lastnost Markova. Ker je $T_r \geq T$ velja $\mathcal{F}_{T} \subseteq \mathcal{F}_{T_r}$. Velja $T_r \downarrow T$ ko $r \rightarrow \infty$. Torej za $G \in \mathcal{F}_T$ velja
 
      \begin{align*}
         &\mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G) \\
@@ -461,13 +496,14 @@ krepka lastnost Markova, "ce za vsak "cas ustavljanja $T$, pogojno na dogodek $\
     \end{align*}
 
     \noindent
-    Ko gre $r \rightarrow \infty$, po zveznosti trajektorij sledi $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-skoraj gotovo. Po Lebesgueovem izreku o dominirani konvergenci lahko v prej"snjih izra"cunih nesemo limito pod $\mathbb{E}$ in dobimo
+    Ko gre $r \rightarrow \infty$, po zveznosti trajektorij sledi $(B_{T_r + s_k} - B_{T_r + s_{k-1}}) \rightarrow (B_{T + s_k} - B_{T + s_{k-1}})$ $\mathbb{P}$-skoraj gotovo. Ker so $f_1, f_2, \ \dots, f_n$ omejene, po  Lebesgueovem izreku o dominirani konvergenci lahko v prej"snjih izra"cunih nesemo limito pod $\mathbb{E}$ in dobimo
     $$
         \mathbb{E}\left[\prod_{k=1}^nf_k\left(B^*_{s_k} - B^*_{s_{k-1}}\right)\mathbbm{1}_G\right] = \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{P}(G)
     $$
      $\hfill \square$
 \end{dokaz}
 
+\pagebreak
 Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavimo in gledamo na proces od tega trenutka dalje, bo to "se vedno Brownovo gibanje neodvisno od dogajanja do $T$. 
 
 \begin{figure}[h]
@@ -500,17 +536,14 @@ Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavi
 \subsection{Princip zrcaljenja}
 
 Definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja za katerega velja $\mathbb{P}(T < \infty) = 1$) in v tej vrednosti glede na premico $y = a$ zrcalimo trajektorijo Brownovega gibanja (glej sliko \ref{fig:slika6}). 
-Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje "'podalj"samo"' s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). Ozna"cimo to tretje Brownovo gibanje z $B'_t$. Naj bo $x<a$ realno "stevilo. Izra"cunati "zelimo 
-$$
-    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_t\}\geq a, \ B_t \leq x\right).
-$$
+Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje "'podalj"samo"' s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). V $T_a$ torej zamenjajmo $B_t$ z njegovim zrcaljenjem "cez premico $y = a$. Ozna"cimo to Brownovo gibanje z $B'_t$. Ko se vpra"samo po verjetnostih za procesa $B_t$ in $B'_t$ dobimo enak odgovor.
 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
     \pgfmathsetseed{952}
     \draw[->] (-1,0) -- (6,0) node[right] {$t$};
-    \draw[->] (0,-1) -- (0,4) node[above] {$B_t, B^*_t, B'_t$};
+    \draw[->] (0,-1) -- (0,4) node[above] {$B_t, B'_t$};
     \draw[black] (0, 0.75) node[left] {$a$};
 
     \draw[spath/save=horiz, red, dashed] (0,0.75) -- (6,0.75);
@@ -519,7 +552,7 @@ $$
       foreach \x in {1,...,500}{
          -- ++(0.01,rand*-0.2) 
          }
-      node[right, black] {$B^*_t$};
+      node[right, black] {$B_t$};
 
         \draw[
             draw=orange,
@@ -531,58 +564,60 @@ $$
 
     \draw[black, dashed] (1.76, 0) -- (1.76,0.7);
     \draw[black] (1.8, 0) node[below] {$T_a$};
-    \draw[black] (1, -1.1) node[below] {$B_t$};
+    %\draw[black] (1, -1.1) node[below] {$B_t$};
     \end{tikzpicture}
     \caption{Primer zrcaljenja Brownovega gibanja.}
     \label{fig:slika6}
 \end{figure}
 
-\pagebreak
-\noindent
+
+Naj bo $x<a$ realno "stevilo. Zanima nas 
+$$
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_s\}\geq a, \ B_t \leq x\right).
+$$
 Ta verjetnost je enaka
 $$
-    \mathbb{P}\left(\max_{0\leq s\leq t}\{B'_t\}\geq a, \ B'_t \leq x\right),
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B'_s\}\geq a, \ B'_t \leq x\right),
 $$
 ampak ta verjetnost pa je enaka (glej sliko \ref{fig:slika6})
 $$
-    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_t\}\geq a, \ B_t \geq 2a -x\right).
+    \mathbb{P}\left(\max_{0\leq s\leq t}\{B_s\}\geq a, \ \underbrace{B_t \geq 2a -x}_{\text{zrcaljenje "cez} \ a}\right).
 $$
-"Ce velja $B_t \geq 2a - x$, velja tudi $\max_{0\leq s\leq t}\{B_t\}\geq a$. Torej je 
+"Ce velja $B_t \geq 2a - x$, velja tudi $\max_{0\leq s\leq t}\{B_s\}\geq a$. Torej je 
 $$
-    \mathbb{P}\left(\max_{0\leq s \leq t}\{B_t\} \geq a, \ B_t \leq x\right) = 
-$$
-$$
-    \mathbb{P}\left(B_t \geq 2a - x\right) =
+    \mathbb{P}\left(\max_{0\leq s \leq t}\{B_s\} \geq a, \ B_t \leq x\right) = 
 $$
 $$
-    1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right),
+    = \mathbb{P}\left(B_t \geq 2a - x\right) =
 $$
-kjer je $\varPhi$ porazdelitvena funkcija normalne porazdelitve. "Ce ozna"cimo $Y_t = \max_{0\leq s\leq t}\{B_t\}$, potem je 
 $$
-    \mathbb{P}\left(Y_t \geq a, \ B_t \leq x\right) = 1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right).
+    = 1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right),
 $$
-Na"sli smo porazdelitev vektorja $(Y_t, B_t)$. Upo"stevamo, da je 
+kjer je $\varPhi$ porazdelitvena funkcija normalne porazdelitve.
+
+Izra"cunajmo "se gostoto porazdelitve $T_a$. "Ce ozna"cimo $X_t = \max_{0\leq s\leq t}\{B_s\}$, potem je 
 $$
-    \mathbb{P}\left(Y_t \geq a, \ B_t \leq x\right) = \mathbb{P}\left(Y_t \geq a\right) - \mathbb{P}\left(Y_t \geq a, \ B_t > x\right)
+    \mathbb{P}\left(X_t \geq a, \ B_t \leq x\right) = 1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right).
 $$
-in ra"cunamo
+Na"sli smo porazdelitev slu"cajnega vektorja $(X_t, B_t)$. Parcialno odvajamo po $a$ in $x$, da dobimo gostoto porazdelitve. %Upo"stevamo, da je 
+%$$
+ %   \mathbb{P}\left(X_t \geq a, \ B_t \leq x\right) = \mathbb{P}\left(X_t \geq a\right) - \mathbb{P}\left(X_t \geq a, \ B_t > x\right)
+%$
+%in ra"cunamo
 \begin{align*}
     \frac{\partial^2}{\partial a \partial x}\left(1 - \varPhi\left(\frac{2a - x}{\sqrt{t}}\right)\right) &= -\frac{\partial}{\partial a}\varPhi'\left(\frac{2a - x}{\sqrt{t}}\right)\frac{1}{\sqrt{t}} =\\
     &= -\frac{\partial}{\partial a}\frac{1}{\sqrt{2\pi}}\exp\left[-\frac{(2a - x)^2}{2t}\right]\frac{1}{\sqrt{t}} =\\
     &= \frac{2(2a - x)}{\sqrt{2\pi t^3}}\exp\left[-\frac{(2a - x)^2}{2t}\right]
 \end{align*}
-
-"Ce integriramo  po $x$ do na $(-\infty, a]$ dobimo gostoto $Y_t$ 
+"Ce gostoto $f_{X_t, B_t}$ integriramo  po $x$  na $(-\infty, a]$ dobimo gostoto $f_{X_t}$ 
 $$
-    \int_{-\infty}^a f_{Y_t, B_t}(a, x)\text{dx} = \frac{2}{\sqrt{2\pi t}}\exp\left[-\frac{a^2}{2t}\right],
+    \int_{-\infty}^a f_{X_t, B_t}(a, x)\text{dx} = \frac{2}{\sqrt{2\pi t}}\exp\left[-\frac{a^2}{2t}\right].
 $$
-kar pa pomeni, da ima $Y_t$ enako porazdelitev kot $|B_t|$.
-
-Ker za dogodek  $\{T_a \leq t\}$ velja $\{T_a \leq t\} = \{Y_t \geq a\}$ sledi 
+Vidimo, da ima $X_t$ enako porazdelitev kot $|B_t|$.
+Ker za dogodek  $\{T_a \leq t\}$ velja $\{T_a \leq t\} = \{X_t \geq a\}$ sledi 
 $$
     \mathbb{P}(T_a \leq t) = \mathbb{P}(|B_t| \geq a) = 2\left(1 - \varPhi\left(\frac{a}{\sqrt{t}}\right)\right).
 $$
-
 Po odvajanju po $t$ dobimo
 $$
     f_{T_a}(t) = \frac{1}{\sqrt{2\pi t^3}}\exp\left[-\frac{a^2}{2t}\right]
@@ -627,9 +662,9 @@ Za zaklju"cek poka"zimo "se idejo dokaza, da je trajektorija Brownovega gibanja 
 \begin{thebibliography}{99}
 
 \bibitem{1} R. Durrett, \emph{Probability: Theory and Examples, Fifth Edition}, eKnjiga, Cambridge University Press, 2019. 
-\bibitem{2} Tukej bo vir do dokaza za dokaz pomoznih trditev za krepko lastnost markova 
-\bibitem{3} M. Perman, \emph{Zapiski predavanj finan"cne matematike 2} 2021
-\bibitem{4} S. Karlin in H. M. Taylor, \emph{A First Course in Stochastic Processes}, Academic Press, 1975.
+\bibitem{2} M. Perman, \emph{Zapiski predavanj finan"cne matematike 2}, spletni vir dostopen na \href{http://valjhun.fmf.uni-lj.si} izr. prof. dr. M. Permana (zadni"c dostopano januar 2024).
+\bibitem{3} S. Karlin in H. M. Taylor, \emph{A First Course in Stochastic Processes}, Academic Press, 1975.
+\bibitem{4} D. Stirzaker, \emph{Stochastic Processes and Models}, Oxford University Press, 2005.
 
 
 \end{thebibliography}
