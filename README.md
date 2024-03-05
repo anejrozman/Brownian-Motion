@@ -1,2 +1,2 @@
-# Black-Scholes-Merton-model
-Black–Scholes–Merton formula derivation 
+# Brownian motion
+Short article "deriving" brownian motion and proving some of it's main properties
