@@ -1,0 +1,9 @@
+SLOVENSKI POVZETEK
+V članku motiviramo idejo Brownovega gibanja in podamo njegovo matematično definicijo. Definiramo osnovne pojme, kot so slu"cajni proces, trajektorija, prirastek, filtracija in "cas ustavljanja.
+Predstavimo in doka"zemo nekaj osnovnih lastnosti ter rezultatov, kot je simetričnost Brownovega gibanja, "sibka lastnost Markova, krepka lastnost Markova,
+princip zracljenja in presenetljiv rezultat, da je trajektorija Brownovega gibanja neodvedljiva funkcija. 
+
+ANGLESKI POVZETEK
+In this paper we motivate the idea of Brownian motion and give its mathematical definition. We define basic concepts such as a stochastic process, sample path, increment, filtration and stopping time.
+We present and prove some basic properties and results, such as the symmetry of Brownian motion, weak Markov property, strong Markov property,
+reflection principle and the surprising result that the sample path of Brownian motion is nowhere differentiable.
