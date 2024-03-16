@@ -94,7 +94,8 @@ Prvo pa si poglejmo nekaj osnovnih definicij, ki jih bomo potrebovali v nadaljev
 
 V duhu fizikalnih za"cetkov teorije Brownovega gibanja si za motivacijo oglejmo naključno gibanje delca v $\mathbb{R}^2$.
 Zaradi preprostosti bomo zahtevali, da se gibanje začne v koordinatnem izhodišču. Želeli bi tudi, da so 
-poti delca zvezne, saj nam nenadni skoki ne bi pomagali pri opisovanju pojava.  
+poti delca zvezne, saj nam nenadni skoki ne bi pomagali pri opisovanju pojava. Primer realizacije naklju"cne
+poti prikazuje slika \ref{fig:slika1}.
 
 \begin{figure}[h]
     \centering
@@ -168,7 +169,7 @@ Ta razmislek nas privede do definicije Brownovega gibanja na $\mathbb{R}$, kjer 
     Hitro lahko vidimo, da po "cetrti lastnosti sledi, da so prirastki procesa stacionarni.
 \end{opomba}
 
-Vprašanje, ki se porodi je, ali sploh obstaja verjetnostni prostor 
+Vprašanje, ki se nam porodi, je, ali sploh obstaja verjetnostni prostor 
 in slučajni proces, ki zadoščata zgornjim zahtevam. Odgovor je pritrdilen in ga 
 podamo v obliki izreka.
 
@@ -261,7 +262,7 @@ Poglejmo si nekaj osnovnih lastnosti Brownovega gibanja, ki nam bodo prišle pra
 \begin{definicija}
     \begin{sloppypar}
     Naj bo $(B_t)_{t\geq 0}$ Brownovo gibanje. S $\mathcal{F}_t$ 
-    označimo $\sigma$-algebro generirano s 
+    označimo $\sigma$-algebro
     ${\sigma(B_s \mid 0\leq s \leq t)}$. Družini $(\mathcal{F}_t)_{t\geq 0}$ pravimo \textit{Brownova filtracija}.
     \end{sloppypar}
 \end{definicija}
@@ -325,6 +326,7 @@ ki ni čas ustavljanja.
         T_a = \inf\{t \geq 0 \mid B_t = a\}
     $$
     čas ustavljanja glede na Brownovo filtracijo $(\mathcal{F}_t)_{t\geq0}$. "Se ve"c, velja $\mathbb{P}(T_a < \infty) = 1$.
+    Je trenutek v "casu, ko $B_t$ prvi"c dose"ze vrednost $a$,  kar je prikazano na sliki \ref{fig:slika3}.
     \label{ex:CasUst}
 \end{primer}
 
@@ -360,7 +362,8 @@ ki ni čas ustavljanja.
     $$
         T^{a, b}_{\max} = \inf\{t \in [a, b] \mid B_t =\max\{B_s: s\in [a, b]\} \}
     $$
-    primer slučajne spremenljivke, ki ni čas ustavljanja glede na Brownovo filtracijo $(\mathcal{F}_t)_{t\geq0}$, saj velja npr. $\{T^{a, b}_{\max} \leq \tfrac{a+b}{2}\} \not\in \mathcal{F}_{\tfrac{a+b}{2}}$.
+    primer slučajne spremenljivke, ki ni čas ustavljanja glede na Brownovo filtracijo
+    $(\mathcal{F}_t)_{t\geq0}$, saj velja npr. $\{T^{a, b}_{\max} \leq \tfrac{a+b}{2}\} \not\in \mathcal{F}_{\tfrac{a+b}{2}}$.
     \label{ex:NiCasUst}
 \end{primer}
 
@@ -395,7 +398,8 @@ ki ni čas ustavljanja.
 \end{figure}
 
 Intuitivna razlaga "casa ustavljanja je naslednja. "Ce proces opazujemo do "casa $t$, potem bi radi v $t$ imeli vse informacije, da lahko povemo, 
-ali se je $T$ zgodil ali ne (kak"sno vrednost je zavzel $T$). V primeru \ref{ex:NiCasUst} to ne velja, saj moramo vedeti vse, kar se je zgodilo do "casa $b$, da lahko povemo, kje je maksimum. 
+ali se je $T$ zgodil ali ne (kak"sno vrednost je zavzel $T$). Kot je razvidno iz slike \ref{fig:slika4}, to v primeru \ref{ex:NiCasUst} ne velja, 
+saj moramo vedeti vse, kar se je zgodilo do "casa $b$, da lahko povemo, kje je maksimum. 
 
 \subsection{Krepka lastnost Markova}
 Pokažimo, da za Brownovo gibanje velja krepka lastnost Markova. Da to poka"zemo, potrebujemo nekaj definicij in pomo"znih rezultatov, ki jih ne bomo dokazovali, saj niso vsebinsko povezani s temo "clanka.
@@ -450,13 +454,13 @@ krepka lastnost Markova, "ce za vsak "cas ustavljanja $T$, pogojno na dogodek $\
     \begin{align*}
         & \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\right] = \\
         &=\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right] \\
-        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right] = \\
-        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\underbrace{\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})}_{\in \mathcal{F}_{\tfrac{m}{n}}}\right] = \\
-        &= \sum_{m=0}^\infty\left(\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right) = \\
+        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{T+s_k} - B_{T + s_{k-1}}\right)\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]  \\
+        &=\sum_{m=0}^\infty\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\underbrace{\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})}_{\in \mathcal{F}_{\tfrac{m}{n}}}\right]  \\
+        &= \sum_{m=0}^\infty\left(\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{\tfrac{m}{n}+s_k} - B_{\tfrac{m}{n} + s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right)  \\
         %&= ((B_{\tfrac{m}{n}+s_k}-B_{\tfrac{m}{n} + s_{k-1}})\sim (B_{s_k}-B_{s_{k-1}})) = \\
-        &= \sum_{m=0}^\infty\left(\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right) = \\
-        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\sum_{m=0}^\infty\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T=\tfrac{m}{n})\right] = \\
-        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right] = \\
+        &= \sum_{m=0}^\infty\left(\mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T = \tfrac{m}{n})\right]\right)  \\
+        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\sum_{m=0}^\infty\mathbb{E}\left[\mathbbm{1}_G\mathbbm{1}(T=\tfrac{m}{n})\right]  \\
+        &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbb{E}\left[\mathbbm{1}_G\sum_{m=0}^\infty\mathbbm{1}(T=\tfrac{m}{n})\right]  \\
         &= \mathbb{E}\left[\prod_{k=1}^nf_k\left(B_{s_k} - B_{s_{k-1}}\right)\right]\mathbbm{P}\left(G\right), \\
     \end{align*} 
     pri "cemer smo pri prehodu iz druge v tretjo vrstico uporabili Lebesgueov izrek o dominirani 
@@ -539,7 +543,7 @@ Izrek ponazorimo s sliko \ref{fig:slika5}. "Ce Brownovo gibanje slu"cajno ustavi
 \subsection{Princip zrcaljenja}
 
 Definiramo "cas ustavljanja $T_a = \inf\{t \geq 0 \mid B_t = a\}$ (glej sliko \ref{fig:slika3}, lahko bi izbrali poljuben "cas ustaljanja, za katerega velja $\mathbb{P}(T < \infty) = 1$) in v tej vrednosti glede na premico $y = a$ zrcalimo trajektorijo Brownovega gibanja (glej sliko \ref{fig:slika6}). 
-Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje, neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje ``podalj"samo" s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). V $T_a$ torej zamenjajmo $B_t$ z njegovim zrcaljenjem "cez premico $y = a$. Ozna"cimo to Brownovo gibanje z $B'_t$. Ko se vpra"samo po verjetnostih za procesa $B_t$ in $B'_t$ dobimo enak odgovor.
+Krepka lastnost Markova nam pove, da je $B^*_t = B_{T_a + t} - B_{T_a}$ Brownovo gibanje, neodvisno od $\mathcal{F}_{T_a}$. Vemo tudi, da je $(-B_t)_{t\geq0}$ Brownovo gibanje. Naprej od "casa $T_a$ lahko Brownovo gibanje ``podalj"samo'' s katerimkoli neodvisnim Brownovim gibanjem (neodvisnim od $\mathcal{F}_{T_a}$). V $T_a$ torej zamenjajmo $B_t$ z njegovim zrcaljenjem "cez premico $y = a$. Ozna"cimo to Brownovo gibanje z $B'_t$. Ko se vpra"samo po verjetnostih za procesa $B_t$ in $B'_t$ dobimo enak odgovor.
 
 \begin{figure}[h]
     \centering
